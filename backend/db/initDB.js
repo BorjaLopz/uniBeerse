@@ -96,7 +96,7 @@ async function main() {
             currentUuid,
             nota,
             comentarios,
-            imagen,
+            imagen.split("Frontend").slice(-1),
           ]
         );
       }

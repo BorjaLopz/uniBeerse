@@ -1,4 +1,4 @@
-import { toast } from "sonner";
+import toast from "react-hot-toast";
 
 import Http from "../services/Http.js";
 
@@ -11,7 +11,11 @@ import Http from "../services/Http.js";
 function useServer() {
   const handleResponse = ({ data, loading, error }) => {
     if (data) {
-      console.log("no hay fallo");
+      // console.log("no hay fallo");
+    }
+
+    if (error) {
+      toast.error(error.message);
     }
 
     return { data, loading, error };

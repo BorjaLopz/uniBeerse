@@ -8,8 +8,6 @@ async function Http({ method = "GET", url, token, body }) {
   const fullURL = new URL(api_url + url);
   // console.log(fullURL);
 
-  console.log(method)
-
   const config = {
     method,
     headers: {
@@ -25,8 +23,6 @@ async function Http({ method = "GET", url, token, body }) {
     if (!res.ok) {
       throw data.error;
     }
-
-    console.log(data);
 
     return { data, loading: false, error: null };
   } catch (error) {

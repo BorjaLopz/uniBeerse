@@ -8,5 +8,5 @@ export default {
       "1/4": "25%",
     },
   },
-  plugins: [],
+  plugins: [require("@tailwindcss/aspect-ratio")],
 };
