@@ -31,7 +31,7 @@ function BeerCard() {
               src={beer.img_file}
               alt={`Imagen de ${beer.brand} | ${beer.name}`}
               className="rounded-xl"
-              width={200}
+              width={300}
             />
           ) : (
             <BeerIcon />
