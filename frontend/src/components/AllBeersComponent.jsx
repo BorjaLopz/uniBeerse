@@ -44,14 +44,19 @@ function AllBeersComponent() {
     <>
       {/* <AllBeersComponent /> */}
       {/* <h1>Hola</h1> */}
-      <div>
-        <CustomPagination
-          data={beers}
-          pageLimit={3}
-          dataLimit={20}
-          RenderComponent={CustomBeerCard}
-        />
-      </div>
+      {loading ? (
+        <div>
+          <CustomPagination
+            data={beers}
+            pageLimit={5}
+            dataLimit={20}
+            RenderComponent={CustomBeerCard}
+          />
+        </div>
+      ) : (
+        <LoadingComponent />
+      )}
+
       {/* <div>
         {beers.length > 0 ? (
           <>

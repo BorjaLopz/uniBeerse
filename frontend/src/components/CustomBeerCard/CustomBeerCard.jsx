@@ -1,29 +1,44 @@
 import "./style.css";
 import BeerIcon from "../BeerIcon";
 import { Link } from "react-router-dom";
+import { getCodeCountryByName } from "../../helpers";
 
 function CustomBeerCard({ data }) {
+  // console.log("data");
+  // console.log(data);
   const { id, brand, name, style, graduation, country, img_file } = data;
+  // console.log("img_file");
+  // console.log(img_file);
 
   return (
     <Link key={id} to={`/beer/${id}`} className="currentBeer">
-      <div>
-        <small>{name}</small>
-        <h1>{brand}</h1>
-        <p>{name}</p>
-        <p>{style}</p>
-        <p>{graduation}</p>
-        <p>{country}</p>
-
+      <div id="beer_card">
+        <h1 id="beer_name">
+          {brand} - {name}
+        </h1>
         {img_file === "" ? (
           <>
-            <BeerIcon  />
+            <BeerIcon />
           </>
         ) : (
           <>
-            <img src={img_file} alt={`Imagen de ${name}`} />
+            <img src={img_file} alt={`Imagen de ${name}`} id="beer_image" />
           </>
         )}
+        <div id="container_graduation_style">
+          <p id="beer_graduation">{graduation}</p>
+          <p id="beer_style">{style}</p>
+        </div>
+        <div id="container_country_icon">
+          <p id="beer_country">{country}</p>
+          <img
+            src={`https://flagcdn.com/w1280/${getCodeCountryByName(
+              country
+            )}.png`}
+            alt={`Bandera de ${country}`}
+            id="flag_icon"
+          />
+        </div>
       </div>
     </Link>
   );
