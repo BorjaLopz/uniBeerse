@@ -6,10 +6,12 @@ main {
 
 .currentBeer {
   flex-basis: calc(100% / 5);
-  border: 1px solid black;
   margin: 1.2rem;
   padding: 0.4rem;
-  height: 20rem;
+  height: 25rem;
+  background-color: #e6e6e6;
+  border-radius: 1rem;
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.404);
 
   display: flex;
   flex-direction: column;
@@ -17,30 +19,28 @@ main {
   /* background-color: blue; */
 }
 
-.currentBeer img,
-.currentBeer svg {
-  width: 8rem;
+.currentBeer:hover {
+  background-color: #3354a20e;
+  box-shadow: 0 0 5px #3354a2be;
 }
 
-/* .pagination {
-  width: 100%;
-  display: flex;
-  flex-direction: row;
-
-  justify-content: center;
-  gap: 1.5rem;
-  font-size: 3rem;
-} */
+.currentBeer img,
+.currentBeer svg {
+  align-self: center;
+  width: 8rem;
+  flex-grow: 1;
+}
 
 .pagination {
   display: flex;
   align-items: center;
   justify-content: center;
+  padding: 2rem 0;
 }
 
 .paginationItem {
   background: #fff;
-  border: 2px solid #666;
+  border: 2px solid #3354a2;
   padding: 10px 15px;
   border-radius: 50%;
   height: 45px;
@@ -62,8 +62,8 @@ main {
   background: #fff;
   border: none;
   padding: 10px;
-  color: blue;
-  box-shadow: 0 0 3px rgba(0, 0, 0, 0.4);
+  color: #3354a2;
+  box-shadow: 0 0 3px #3354a2;
   margin: 0 10px;
   cursor: pointer;
 }
@@ -79,4 +79,77 @@ main {
   pointer-events: none;
   box-shadow: none;
   color: #999;
+}
+
+button.disabled {
+  border: 1px solid #999;
+  pointer-events: none;
+  box-shadow: none;
+  color: #999;
+}
+
+#beer_card {
+  height: 200rem;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  padding: 0.5rem;
+  gap: 0.4rem;
+
+}
+
+#beer_name {
+  font-size: 2rem;
+  font-style: italic;
+  text-align: center;
+}
+
+#container_graduation_style {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+#container_country_icon {
+  display: flex;
+  flex-direction: row;
+  max-height: 2rem;
+  justify-content: space-between;
+}
+
+#container_country_icon * {
+  flex: 1;
+}
+
+#container_country_icon p {
+  text-align: center;
+  align-self: center;
+  order: 1;
+}
+
+#flag_icon {
+  max-height: 100%;
+  object-fit: contain;
+  order: 2;
+}
+
+#beer_brand {
+  font-size: 1.2rem;
+  order: 1;
+}
+
+#beer_style {
+  font-size: 1.2rem;
+  align-self: center;
+  order: 2;
+}
+
+#beer_image {
+  width: 100%;
+  overflow: hidden;
+  object-fit: contain;
+}
+
+#beer_graduation::after {
+  content: "%";
 }

@@ -1,8 +1,9 @@
 import { useEffect, useState } from "react";
-import CustomBeerCard from "./CustomBeerCard/CustomBeerCard";
 function CustomPagination({ data, dataLimit, pageLimit, RenderComponent }) {
-  // console.log(data);
-  const [pages] = useState(Math.round(data.length / dataLimit));
+  let pages = Math.ceil(data.length / dataLimit);
+  console.log("data.length / dataLimit");
+  console.log(Math.round(data.length / dataLimit));
+
   const [currentPage, setCurrentPage] = useState(1);
 
   function goToNextPage() {
@@ -18,6 +19,14 @@ function CustomPagination({ data, dataLimit, pageLimit, RenderComponent }) {
     setCurrentPage(pageNumber);
   }
 
+  function goToFirstPage() {
+    setCurrentPage((page) => (page = 1));
+  }
+
+  function goToLastPage() {
+    setCurrentPage((page) => (page = pages));
+  }
+
   const getPaginatedData = () => {
     const startIndex = currentPage * dataLimit - dataLimit;
     const endIndex = startIndex + dataLimit;
@@ -26,13 +35,18 @@ function CustomPagination({ data, dataLimit, pageLimit, RenderComponent }) {
 
   const getPaginationGroup = () => {
     let start = Math.floor((currentPage - 1) / pageLimit) * pageLimit;
-    return new Array(pageLimit).fill().map((_, idx) => start + idx + 1);
+    console.log("start");
+    console.log(start);
+    console.log("currentPage");
+    console.log(currentPage);
+    return new Array(pageLimit).fill().map((_, idx) => {
+      return start + idx + 1;
+    });
   };
 
-  console.log("currentPage");
-  console.log(currentPage);
-
-  useEffect(() => {}, []);
+  useEffect(() => {
+    window.scrollTo({ behavior: "smooth", top: "0px" });
+  }, [currentPage]);
   return (
     <>
       <main>
@@ -45,12 +59,20 @@ function CustomPagination({ data, dataLimit, pageLimit, RenderComponent }) {
         })}
       </main>
       <div className="pagination">
+        {/* First Page */}
+        <button
+          onClick={goToFirstPage}
+          className={`prev ${currentPage === 1 ? "disabled" : ""}`}
+        >
+          {`<<<`}
+        </button>
+
         {/* previous button */}
         <button
           onClick={goToPreviousPage}
           className={`prev ${currentPage === 1 ? "disabled" : ""}`}
         >
-          prev
+          {`<`}
         </button>
 
         {/* show page numbers */}
@@ -60,7 +82,7 @@ function CustomPagination({ data, dataLimit, pageLimit, RenderComponent }) {
             onClick={changePage}
             className={`paginationItem ${
               currentPage === item ? "active" : null
-            }`}
+            } ${item > pages ? "disabled" : null}`}
           >
             <span>{item}</span>
           </button>
@@ -71,7 +93,15 @@ function CustomPagination({ data, dataLimit, pageLimit, RenderComponent }) {
           onClick={goToNextPage}
           className={`next ${currentPage === pages ? "disabled" : ""}`}
         >
-          next
+          {`>`}
+        </button>
+
+        {/* Last Page */}
+        <button
+          onClick={goToLastPage}
+          className={`prev ${currentPage === pages ? "disabled" : ""}`}
+        >
+          {`>>>`}
         </button>
       </div>
     </>
