@@ -10,11 +10,12 @@ import Cervezas from "./views/Cervezas";
 import Estilos from "./views/Estilos";
 import NotFound from "./views/NotFound";
 import BeerCard from "./components/BeerCard";
+import Header from "./components/Header";
 
 function App() {
   return (
     <div className="app">
-      <SearchBar />
+      <Header />
       <Toaster position="top-right" reverseOrder={false} />
       <Routes>
         {/* <AllBeersComponent /> */}

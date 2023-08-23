@@ -1,8 +1,8 @@
 import { useEffect, useState } from "react";
 function CustomPagination({ data, dataLimit, pageLimit, RenderComponent }) {
   let pages = Math.ceil(data.length / dataLimit);
-  console.log("data.length / dataLimit");
-  console.log(Math.round(data.length / dataLimit));
+  // console.log("data.length / dataLimit");
+  // console.log(Math.round(data.length / dataLimit));
 
   const [currentPage, setCurrentPage] = useState(1);
 
@@ -35,10 +35,6 @@ function CustomPagination({ data, dataLimit, pageLimit, RenderComponent }) {
 
   const getPaginationGroup = () => {
     let start = Math.floor((currentPage - 1) / pageLimit) * pageLimit;
-    console.log("start");
-    console.log(start);
-    console.log("currentPage");
-    console.log(currentPage);
     return new Array(pageLimit).fill().map((_, idx) => {
       return start + idx + 1;
     });

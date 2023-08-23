@@ -1,32 +1,19 @@
 import { useEffect, useState } from "react";
-// import AllBeersComponent from "../components/AllBeersComponent";
 import useServer from "../hooks/useServer";
-import BeerIcon from "./BeerIcon";
 import LoadingComponent from "./LoadingComponent";
-import { Link } from "react-router-dom";
 
 import CustomPagination from "./CustomPagination";
-import Pagination from "./Pagination";
-import BeerCard from "./BeerCard";
 import CustomBeerCard from "./CustomBeerCard/CustomBeerCard";
 
-function AllBeersComponent() {
+function AllBeersComponent({ filter }) {
   const [beers, setBeers] = useState([]);
   const { get } = useServer();
   const [loading, setLoading] = useState(false);
 
-  const [currentPage, setCurrentPage] = useState(0);
   const [totalPages, setTotalPages] = useState(0);
 
   const itemsPerPage = 10;
 
-  const startIndex = currentPage * itemsPerPage;
-  const endIndex = startIndex + itemsPerPage;
-  const subset = beers.slice(startIndex, endIndex);
-
-  const handlePageChange = (selectedPage) => {
-    setCurrentPage(selectedPage.selected);
-  };
 
   const getBeers = async () => {
     const { data } = await get({ url: "/beers/all" });
@@ -43,7 +30,7 @@ function AllBeersComponent() {
   return (
     <>
       {/* <AllBeersComponent /> */}
-      {/* <h1>Hola</h1> */}
+      {/* <SearchBar data={beers} /> */}
       {loading ? (
         <div>
           <CustomPagination
@@ -56,22 +43,6 @@ function AllBeersComponent() {
       ) : (
         <LoadingComponent />
       )}
-
-      {/* <div>
-        {beers.length > 0 ? (
-          <>
-            <Pagination
-              data={beers}
-              RenderComponent={BeerCard}
-              title="Posts"
-              pageLimit={5}
-              dataLimit={10}
-            />
-          </>
-        ) : (
-          <h1>No Posts to display</h1>
-        )}
-      </div> */}
     </>
   );
 }
