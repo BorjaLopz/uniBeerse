@@ -1,9 +1,16 @@
 import { useEffect, useState } from "react";
-function CustomPagination({ data, dataLimit, pageLimit, RenderComponent }) {
+function CustomPagination({
+  data,
+  dataLimit,
+  pageLimit,
+  RenderComponent,
+  filter,
+}) {
   let pages = Math.ceil(data.length / dataLimit);
-  // console.log("data.length / dataLimit");
-  // console.log(Math.round(data.length / dataLimit));
 
+  console.log("filter");
+  console.log(filter);
+  
   const [currentPage, setCurrentPage] = useState(1);
 
   function goToNextPage() {
@@ -43,63 +50,83 @@ function CustomPagination({ data, dataLimit, pageLimit, RenderComponent }) {
   useEffect(() => {
     window.scrollTo({ behavior: "smooth", top: "0px" });
   }, [currentPage]);
+
   return (
     <>
       <main>
-        {getPaginatedData().map((d) => {
-          return (
-            <>
-              <RenderComponent data={d} />
-            </>
-          );
-        })}
+        <section id="title">
+          {/* <h1>{`Mostrando ${
+            currentPage !== pages
+              ? dataLimit * currentPage
+              : dataLimit * (currentPage - 1) +
+                document.querySelectorAll(".currentBeer").length
+          } de ${data.length}`}</h1> */}
+          {data.length === 0 ? (
+            <h1>No hay ningun resultado</h1>
+          ) : (
+            <h1>{`Mostrando ${
+              filter === "" ? "todos los resultados" : filter
+            }`}</h1>
+          )}
+        </section>
+        <section id="beer-area">
+          {getPaginatedData().map((d) => {
+            return (
+              <>
+                <RenderComponent data={d} />
+              </>
+            );
+          })}
+        </section>
       </main>
-      <div className="pagination">
-        {/* First Page */}
-        <button
-          onClick={goToFirstPage}
-          className={`prev ${currentPage === 1 ? "disabled" : ""}`}
-        >
-          {`<<<`}
-        </button>
-
-        {/* previous button */}
-        <button
-          onClick={goToPreviousPage}
-          className={`prev ${currentPage === 1 ? "disabled" : ""}`}
-        >
-          {`<`}
-        </button>
-
-        {/* show page numbers */}
-        {getPaginationGroup().map((item, index) => (
+      {data.length !== 0 && (
+        <div className="pagination">
+          {/* First Page */}
           <button
-            key={index}
-            onClick={changePage}
-            className={`paginationItem ${
-              currentPage === item ? "active" : null
-            } ${item > pages ? "disabled" : null}`}
+            onClick={goToFirstPage}
+            className={`prev ${currentPage === 1 ? "disabled" : ""}`}
           >
-            <span>{item}</span>
+            {`<<<`}
           </button>
-        ))}
 
-        {/* next button */}
-        <button
-          onClick={goToNextPage}
-          className={`next ${currentPage === pages ? "disabled" : ""}`}
-        >
-          {`>`}
-        </button>
+          {/* previous button */}
+          <button
+            onClick={goToPreviousPage}
+            className={`prev ${currentPage === 1 ? "disabled" : ""}`}
+          >
+            {`<`}
+          </button>
 
-        {/* Last Page */}
-        <button
-          onClick={goToLastPage}
-          className={`prev ${currentPage === pages ? "disabled" : ""}`}
-        >
-          {`>>>`}
-        </button>
-      </div>
+          {/* show page numbers */}
+          {getPaginationGroup().map((item, index) => (
+            <button
+              key={index}
+              onClick={changePage}
+              className={`paginationItem ${
+                currentPage === item ? "active" : null
+              } ${item > pages ? "disabled" : null}`}
+            >
+              <span>{item}</span>
+            </button>
+          ))}
+
+          {/* next button */}
+          <button
+            onClick={goToNextPage}
+            className={`next ${currentPage === pages ? "disabled" : ""}`}
+          >
+            {`>`}
+          </button>
+
+          {/* Last Page */}
+          <button
+            onClick={goToLastPage}
+            className={`prev ${currentPage === pages ? "disabled" : ""}`}
+          >
+            {`>>>`}
+          </button>
+        </div>
+      )}
     </>
   );
 }

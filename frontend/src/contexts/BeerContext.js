@@ -4,4 +4,4 @@ const BeerContext = createContext();
 
 export default BeerContext;
 
-//export const BeerContext = React.createContext("");
+export const BeerContext_Prueba = createContext("");

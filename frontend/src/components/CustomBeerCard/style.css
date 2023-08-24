@@ -1,5 +1,15 @@
 main {
   display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+#title > h1 {
+  font-size: 2rem;
+}
+
+#beer-area {
+  display: flex;
   flex-wrap: wrap;
   justify-content: space-around;
 }

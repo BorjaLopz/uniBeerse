@@ -2,14 +2,14 @@ import { Link } from "react-router-dom";
 import SearchBar from "./SearchBar";
 import { useState } from "react";
 
-function Header() {
+function Header({ handleCustomFilter }) {
   const [filter, setFilter] = useState("");
 
   const handleFilter = (_filter) => {
     setFilter(_filter);
+    handleCustomFilter(_filter);
   };
-
-  console.log("Mensaje desde padre: " + filter);
+  
   return (
     <>
       <header>

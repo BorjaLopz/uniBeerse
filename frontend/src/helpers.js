@@ -3511,4 +3511,8 @@ function getCodeCountryByName(_country) {
     : "Objeto no encontrado";
 }
 
-export { getCodeCountryByName };
+function removingAccents(_string) {
+  return _string.normalize("NFD").replace(/[\u0300-\u036f]/g, "");
+}
+
+export { getCodeCountryByName, removingAccents };

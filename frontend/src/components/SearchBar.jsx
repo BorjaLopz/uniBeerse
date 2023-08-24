@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import SearchIcon from "./SearchIcon";
 import useServer from "../hooks/useServer";
+import { removingAccents } from "../helpers";
 
 function SearchBar({ handleFilter }) {
   const [inputText, setInputText] = useState("");
@@ -16,10 +17,9 @@ function SearchBar({ handleFilter }) {
     getBeers();
   }, [inputText]);
 
-  // console.log(beers);
 
   let inputHandler = (e) => {
-    let LowerText = e.target.value.toLowerCase();
+    let LowerText = removingAccents(e.target.value.toLowerCase());
     setInputText(LowerText);
     handleFilter(LowerText);
   };
@@ -27,15 +27,7 @@ function SearchBar({ handleFilter }) {
   // console.log("inputText");
   // console.log(inputText);
 
-  beers.filter((beer) => {
-    if (inputText === "") {
-      return beer;
-    } else if (beer.brand.toLowerCase().includes(inputText) || beer.name.toLowerCase().includes(inputText) || beer.style.toLowerCase().includes(inputText)) {
-      console.log("filtrado");
-      console.log(beer);
-      return beer;
-    }
-  });
+  
   return (
     <>
       <section>

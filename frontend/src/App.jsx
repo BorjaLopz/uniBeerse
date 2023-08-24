@@ -11,15 +11,20 @@ import Estilos from "./views/Estilos";
 import NotFound from "./views/NotFound";
 import BeerCard from "./components/BeerCard";
 import Header from "./components/Header";
+import { useState } from "react";
 
 function App() {
+  const [customFilter, setCustomFilter] = useState("");
   return (
     <div className="app">
-      <Header />
+      <Header handleCustomFilter={setCustomFilter} />
       <Toaster position="top-right" reverseOrder={false} />
       <Routes>
         {/* <AllBeersComponent /> */}
-        <Route path="/" element={<AllBeersComponent />} />
+        <Route
+          path="/"
+          element={<AllBeersComponent customFilter={customFilter} />}
+        />
         <Route path="/contact" element={<Contacto />} />
         <Route path="/add" element={<AñadirCerveza />} />
         <Route path="/beer" element={<Cervezas />} />
