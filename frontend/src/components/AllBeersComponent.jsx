@@ -4,7 +4,6 @@ import LoadingComponent from "./LoadingComponent";
 
 import CustomPagination from "./CustomPagination";
 import CustomBeerCard from "./CustomBeerCard/CustomBeerCard";
-import { BeerContext_Prueba } from "../contexts/BeerContext";
 import { removingAccents } from "../helpers";
 
 function AllBeersComponent({ customFilter }) {
@@ -36,11 +35,9 @@ function AllBeersComponent({ customFilter }) {
       removingAccents(beer.name.toLowerCase()).includes(customFilter) ||
       removingAccents(beer.style.toLowerCase()).includes(customFilter) ||
       removingAccents(beer.brand.toLowerCase()).includes(customFilter) ||
-      removingAccents(beer.country.toLowerCase()).includes(customFilter)
+      removingAccents(beer.country.toLowerCase()).includes(customFilter) ||
+      removingAccents(beer.graduation.toLowerCase()).includes(customFilter)
     ) {
-      
-      console.log("filtrado");
-      console.log(beer);
       filteredBeers.push(beer);
       return beer;
     }

@@ -10,7 +10,7 @@ function CustomPagination({
 
   console.log("filter");
   console.log(filter);
-  
+
   const [currentPage, setCurrentPage] = useState(1);
 
   function goToNextPage() {
@@ -70,10 +70,10 @@ function CustomPagination({
           )}
         </section>
         <section id="beer-area">
-          {getPaginatedData().map((d) => {
+          {getPaginatedData().map((d, index) => {
             return (
               <>
-                <RenderComponent data={d} />
+                <RenderComponent data={d} key={index} />
               </>
             );
           })}

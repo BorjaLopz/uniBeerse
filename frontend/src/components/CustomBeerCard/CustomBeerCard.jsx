@@ -4,18 +4,15 @@ import { Link } from "react-router-dom";
 import { getCodeCountryByName } from "../../helpers";
 
 function CustomBeerCard({ data }) {
-  // console.log("data");
-  // console.log(data);
   const { id, brand, name, style, graduation, country, img_file } = data;
-  // console.log("img_file");
-  // console.log(img_file);
 
   return (
     <Link key={id} to={`/beer/${id}`} className="currentBeer">
       <div id="beer_card">
-        <h1 id="beer_name">
-          {brand} - {name}
-        </h1>
+        <div id="beer_brand_name">
+          <h2 id="beer_brand">{brand}</h2>
+          <h2 id="beer_name">{name}</h2>
+        </div>
         {img_file === "" ? (
           <>
             <BeerIcon />

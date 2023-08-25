@@ -3516,3 +3516,54 @@ function removingAccents(_string) {
 }
 
 export { getCodeCountryByName, removingAccents };
+
+/* LO QUE VAMOS A TENER QUE HACER ES SACAR UN ARRAY DE CODE_2, SI ES SOLO 1 PERFECTO, PERO SI HAY MAS DE 1 TENDREMOS QUE MOSTRAR LAS DOS BANDERAS. ESPERO QUE LO HAGAS BIEN BORJA DEL FUTURO :)*/
+
+/* const countries = [
+  {
+    name_en: "Afghanistan",
+    name_es: "Francia",
+    continent_en: "Africa",
+    continent_es: "África",
+    capital_en: "Kabul",
+    capital_es: "Kabul",
+    dial_code: "+93",
+    code_2: "AF",
+    code_3: "AFG",
+    tld: ".af",
+    km2: 652230,
+    emoji: "🇦🇫",
+  },
+  {
+    name_en: "Åland Islands",
+    name_es: "Åland",
+    continent_en: "Europe",
+    continent_es: "Europa",
+    capital_en: "Mariehamn",
+    capital_es: "Mariehamn",
+    dial_code: "+358",
+    code_2: "AX",
+    code_3: "ALA",
+    tld: ".ax",
+    km2: 1580,
+    emoji: "🇦🇽",
+  }
+]
+
+function getCodeCountryByName(_country) {
+    console.log("_country: ", _country)
+    
+    const newString = _country.split("/");
+    console.log(newString);
+  const objetoEncontrado = countries.find(
+    (objeto) => objeto.name_es === _country
+  );
+
+  return objetoEncontrado
+    ? objetoEncontrado.code_2.toLowerCase()
+    : "Objeto no encontrado";
+}
+
+console.log(getCodeCountryByName("Francia / España"))
+
+*/

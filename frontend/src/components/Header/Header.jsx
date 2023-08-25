@@ -1,6 +1,7 @@
 import { Link } from "react-router-dom";
-import SearchBar from "./SearchBar";
+import SearchBar from "../SearchBar/SearchBar";
 import { useState } from "react";
+import "./style.css";
 
 function Header({ handleCustomFilter }) {
   const [filter, setFilter] = useState("");
@@ -9,11 +10,13 @@ function Header({ handleCustomFilter }) {
     setFilter(_filter);
     handleCustomFilter(_filter);
   };
-  
+
   return (
     <>
       <header>
-        <div id="mainIcon">Icono</div>
+        <div id="mainIcon">
+          <img src="mainIcon.svg" alt="Icono Borja" />
+        </div>
         <menu>
           <Link to="/">Inicio</Link>
           <Link to="/beer">Cervezas</Link>
