@@ -8,8 +8,8 @@ function CustomPagination({
 }) {
   let pages = Math.ceil(data.length / dataLimit);
 
-  console.log("filter");
-  console.log(filter);
+  // console.log("filter");
+  // console.log(filter);
 
   const [currentPage, setCurrentPage] = useState(1);
 
