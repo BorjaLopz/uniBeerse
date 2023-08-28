@@ -1,0 +1,28 @@
+#style-main {
+  display: flex;
+  flex-direction: column;
+  align-content: center;
+  gap: 2rem;
+  width: 100%;
+  flex-wrap: nowrap;
+  margin-top: 4rem;
+}
+#article-style {
+  border: 1px;
+  display: flex;
+  flex-direction: column;
+  width: 80%;
+  align-items: center;
+  height: 8rem;
+  border-radius: 1rem;
+  background-color: #eeeeee;
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.404);
+}
+
+#article-style * {
+  padding: 1rem;
+}
+
+/* #article-style h2 {
+  align-content: center;
+} */

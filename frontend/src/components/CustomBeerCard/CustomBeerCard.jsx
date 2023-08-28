@@ -6,12 +6,6 @@ import { splitCountryName } from "../../helpers";
 
 function CustomBeerCard({ data }) {
   const { id, brand, name, style, graduation, country, img_file } = data;
-  console.log(country);
-
-  let countryArray = [country];
-  console.log(country.includes(" / "));
-
-  console.log(splitCountryName(country));
 
   return (
     <Link key={id} to={`/beer/${id}`} className="currentBeer">
