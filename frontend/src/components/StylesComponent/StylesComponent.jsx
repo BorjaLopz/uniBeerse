@@ -1,16 +1,18 @@
 import styles from "../../../public/styles.json";
-import "./style.css"
+import "./style.css";
+import { Link } from "react-router-dom";
 
 function StylesComponent() {
-  console.log(styles);
   return (
     <>
       {styles.map((s, id) => {
         return (
-          <article id="article-style">
-            <h2>{s.style}</h2>
-            <p>{s.description}</p>
-          </article>
+          <Link key={id} to={`/style/${s.style}`} className="style-article">
+            <article id="article-style">
+              <h2>{s.style}</h2>
+              <p>{s.description}</p>
+            </article>
+          </Link>
         );
       })}
     </>
