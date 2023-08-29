@@ -1,0 +1,48 @@
+#ejemplos-cerveza {
+  width: 80%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+ul {
+  width: 80%;
+  display: flex;
+  justify-content: center;
+  gap: 4rem;
+}
+
+#currentBeer {
+  margin: 1.2rem;
+  padding: 0.4rem;
+  height: 20rem;
+  background-color: #eee;
+  border-radius: 1rem;
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.404);
+
+  min-width: 8rem;
+  max-width: 10rem;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+#beer_card_style {
+  height: 100%;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+#currentBeer img,
+#currentBeer svg {
+  min-width: 6rem;
+  align-self: center;
+  width: 6rem;
+  flex-grow: 1;
+}
+
+#container_graduation_style {
+  align-items: end;
+}

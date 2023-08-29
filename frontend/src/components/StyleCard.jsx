@@ -7,25 +7,41 @@ import BeerStyleComponent from "./BeerStyleComponent/BeerStyleComponent";
 function StyleCard() {
   const { style } = useParams();
   const [beers, setBeers] = useState([]);
+  const [randomElements, setRandomElements] = useState([]);
   const { get } = useServer();
 
   const numberOfExamples = 4;
 
   const getBeers = async () => {
     const { data } = await get({ url: "/beers/all" });
-    data.data.map((d) => {
-      if (d.style.includes(style)) {
-        console.log(d.style);
-        return d.style;
-      }
-    });
+    const resultadosFiltrados = data.data.filter((objeto) =>
+      objeto.style.includes(style)
+    );
+    setBeers(resultadosFiltrados);
+  };
+
+  const selectRandomElements = () => {
+    const shuffled = [...beers].sort(() => 0.5 - Math.random());
+    const selected = shuffled.slice(0, 4);
+    setRandomElements(selected);
   };
 
   useEffect(() => {
     getBeers();
   }, []);
 
-  console.log(beers);
+  useEffect(() => {
+    selectRandomElements();
+  }, [beers]);
+
+  const beerStyleExample = [];
+
+  for (let i = 0; i < numberOfExamples; i++) {
+    beerStyleExample.push(randomElements[i]);
+  }
+
+  console.log(beerStyleExample);
+
   return (
     <>
       <main>
@@ -44,6 +60,17 @@ function StyleCard() {
               </>
             );
           })}
+        </article>
+
+        <article id="ejemplos-cerveza">
+          <h2>{`Ejemplos de cervezas ${style}`}</h2>
+          <ul>
+            {beerStyleExample.map((b) => {
+              if (b !== undefined) {
+                return <BeerStyleComponent b={b} />;
+              }
+            })}
+          </ul>
         </article>
       </main>
     </>
