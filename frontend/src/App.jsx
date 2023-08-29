@@ -1,13 +1,9 @@
 import { Toaster } from "react-hot-toast";
 import { Route, Routes } from "react-router-dom";
 // import AllBeers from "./views/AllBeers";
-import AllBeersComponent from "./components/AllBeersComponent";
-import SearchBar from "./components/SearchBar/SearchBar";
-import LoadingComponent from "./components/LoadingComponent";
 import Contacto from "./views/Contacto";
 import AñadirCerveza from "./views/AñadirCerveza";
 import Cervezas from "./views/Cervezas";
-import Estilos from "./views/StylesPages";
 import NotFound from "./views/NotFound";
 import BeerCard from "./components/BeerCard";
 import Header from "./components/Header/Header";
@@ -36,6 +32,7 @@ function App() {
         <Route path="/style/:style" element={<StyleCard />} />
         <Route path="/*" element={<NotFound />} />
       </Routes>
+
       {/* <LoadingComponent /> */}
     </div>
   );

@@ -37,7 +37,9 @@ function StyleCard() {
   const beerStyleExample = [];
 
   for (let i = 0; i < numberOfExamples; i++) {
-    beerStyleExample.push(randomElements[i]);
+    if (randomElements[i] !== undefined) {
+      beerStyleExample.push(randomElements[i]);
+    }
   }
 
   console.log(beerStyleExample);
@@ -45,13 +47,13 @@ function StyleCard() {
   return (
     <>
       <main>
-        <article>
+        <article id="description_style">
           {styles.map((s, id) => {
             return (
               <>
                 {s.style === style ? (
                   <div>
-                    <h2>{s.style}</h2>
+                    <h2>Cervezas estilo {s.style.toLowerCase()}</h2>
                     <p>{s.description}</p>
                   </div>
                 ) : (
@@ -63,14 +65,20 @@ function StyleCard() {
         </article>
 
         <article id="ejemplos-cerveza">
-          <h2>{`Ejemplos de cervezas ${style}`}</h2>
-          <ul>
-            {beerStyleExample.map((b) => {
-              if (b !== undefined) {
-                return <BeerStyleComponent b={b} />;
-              }
-            })}
-          </ul>
+          {beerStyleExample.length > 0 ? (
+            <>
+              <h2>{`Ejemplos de cervezas ${style.toLowerCase()}`}</h2>
+              <ul>
+                {beerStyleExample.map((b) => {
+                  if (b !== undefined) {
+                    return <BeerStyleComponent b={b} />;
+                  }
+                })}
+              </ul>
+            </>
+          ) : (
+            <h2>{`No hay cervezas ${style.toLowerCase()}`}</h2>
+          )}
         </article>
       </main>
     </>

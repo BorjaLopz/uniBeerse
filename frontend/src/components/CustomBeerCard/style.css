@@ -19,12 +19,13 @@ main {
   flex-basis: calc(100% / 5);
   margin: 1.2rem;
   padding: 0.4rem;
-  height: 25rem;
   background-color: #eee;
   border-radius: 1rem;
   box-shadow: 0 0 5px rgba(0, 0, 0, 0.404);
-
+  
   min-width: 15rem;
+  max-height: 35rem;
+  height: 25rem;
   max-width: 20rem;
 
   display: flex;
@@ -108,10 +109,12 @@ button.disabled {
   flex-direction: column;
   align-items: center;
   flex: 25;
+  max-height: 6rem;
+  overflow: hidden;
 }
 
 #beer_card {
-  height: 200rem;
+  height: 20rem;
   display: flex;
   flex-direction: column;
   height: 100%;
@@ -132,6 +135,8 @@ button.disabled {
   flex-direction: row;
   justify-content: space-between;
   flex: 15;
+  max-height: 1rem;
+  text-size-adjust: auto
 }
 
 #container_country_icon {
@@ -163,13 +168,17 @@ button.disabled {
   font-style: italic;
   text-align: center;
   order: 1;
+  font-size-adjust: 5rem;
+  text-size-adjust: auto;
 }
 
 #beer_style {
-  font-size: 1.2rem;
+  font-size: 1rem;
   align-self: center;
   order: 2;
   text-align: end;
+  overflow: hidden;
+
 }
 
 #beer_image {
