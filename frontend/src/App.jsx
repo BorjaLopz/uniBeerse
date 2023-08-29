@@ -14,6 +14,7 @@ import Header from "./components/Header/Header";
 import { useState } from "react";
 import AllBeersPage from "./views/AllBeersPage";
 import StylesPage from "./views/StylesPages";
+import StyleCard from "./components/StyleCard";
 
 function App() {
   const [customFilter, setCustomFilter] = useState("");
@@ -32,6 +33,7 @@ function App() {
         <Route path="/beer" element={<Cervezas />} />
         <Route path={`/beer/:id`} element={<BeerCard />} />
         <Route path="/styles" element={<StylesPage />} />
+        <Route path="/style/:style" element={<StyleCard />} />
         <Route path="/*" element={<NotFound />} />
       </Routes>
       {/* <LoadingComponent /> */}
