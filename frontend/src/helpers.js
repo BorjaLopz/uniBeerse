@@ -3501,14 +3501,60 @@ const countries = [
   },
 ];
 
-function getCodeCountryByName(_country) {
-  const objetoEncontrado = countries.find(
-    (objeto) => objeto.name_es === _country
-  );
+function splitCountryName(_country) {
+  if (_country.includes(" / ")) {
+    let objetoEncontrado = [];
+    const countryArray = _country.split(" / ");
 
-  return objetoEncontrado
-    ? objetoEncontrado.code_2.toLowerCase()
-    : "Objeto no encontrado";
+    countryArray.map((currentCountry) => {
+      objetoEncontrado.push(
+        countries
+          .filter(function (c) {
+            return c.name_es === currentCountry;
+          })
+          .map(function (c) {
+            return c.code_2.toLowerCase();
+          })
+      );
+    });
+
+    return objetoEncontrado ? objetoEncontrado.flat() : "Objeto no encontrado";
+  }
 }
 
-export { getCodeCountryByName };
+function getCodeCountryByName(_country) {
+  if (_country.includes("/")) {
+    let objetoEncontrado = [];
+    const countryArray = _country.split(" / ");
+
+    countryArray.map((currentCountry) => {
+      objetoEncontrado.push(
+        countries
+          .filter(function (c) {
+            return c.name_es === currentCountry;
+          })
+          .map(function (c) {
+            return c.code_2.toLowerCase();
+          })
+      );
+    });
+
+    return objetoEncontrado ? objetoEncontrado.flat() : "Objeto no encontrado";
+  } else {
+    const objetoEncontrado = countries.find(
+      (objeto) => objeto.name_es === _country
+    );
+
+    return objetoEncontrado
+      ? objetoEncontrado.code_2.toLowerCase()
+      : "Objeto no encontrado";
+  }
+}
+
+function removingAccents(_string) {
+  return _string.normalize("NFD").replace(/[\u0300-\u036f]/g, "");
+}
+
+export { getCodeCountryByName, removingAccents, splitCountryName };
+
+/* LO QUE VAMOS A TENER QUE HACER ES SACAR UN ARRAY DE CODE_2, SI ES SOLO 1 PERFECTO, PERO SI HAY MAS DE 1 TENDREMOS QUE MOSTRAR LAS DOS BANDERAS. ESPERO QUE LO HAGAS BIEN BORJA DEL FUTURO :)*/

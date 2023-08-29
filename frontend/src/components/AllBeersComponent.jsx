@@ -1,32 +1,20 @@
-import { useEffect, useState } from "react";
-// import AllBeersComponent from "../components/AllBeersComponent";
+import { useEffect, useState, useContext } from "react";
 import useServer from "../hooks/useServer";
-import BeerIcon from "./BeerIcon";
 import LoadingComponent from "./LoadingComponent";
-import { Link } from "react-router-dom";
 
 import CustomPagination from "./CustomPagination";
-import Pagination from "./Pagination";
-import BeerCard from "./BeerCard";
 import CustomBeerCard from "./CustomBeerCard/CustomBeerCard";
+import { removingAccents } from "../helpers";
 
-function AllBeersComponent() {
+function AllBeersComponent({ customFilter }) {
   const [beers, setBeers] = useState([]);
   const { get } = useServer();
   const [loading, setLoading] = useState(false);
+  let filteredBeers = [];
 
-  const [currentPage, setCurrentPage] = useState(0);
   const [totalPages, setTotalPages] = useState(0);
 
   const itemsPerPage = 10;
-
-  const startIndex = currentPage * itemsPerPage;
-  const endIndex = startIndex + itemsPerPage;
-  const subset = beers.slice(startIndex, endIndex);
-
-  const handlePageChange = (selectedPage) => {
-    setCurrentPage(selectedPage.selected);
-  };
 
   const getBeers = async () => {
     const { data } = await get({ url: "/beers/all" });
@@ -40,38 +28,38 @@ function AllBeersComponent() {
     setTotalPages(Math.ceil(beers.length / itemsPerPage));
   }, []);
 
+  beers.filter((beer) => {
+    if (customFilter === "") {
+      return beer;
+    } else if (
+      removingAccents(beer.name.toLowerCase()).includes(customFilter) ||
+      removingAccents(beer.style.toLowerCase()).includes(customFilter) ||
+      removingAccents(beer.brand.toLowerCase()).includes(customFilter) ||
+      removingAccents(beer.country.toLowerCase()).includes(customFilter) ||
+      removingAccents(beer.graduation.toLowerCase()).includes(customFilter)
+    ) {
+      filteredBeers.push(beer);
+      return beer;
+    }
+  });
+
   return (
     <>
       {/* <AllBeersComponent /> */}
-      {/* <h1>Hola</h1> */}
+      {/* <SearchBar data={beers} /> */}
       {loading ? (
         <div>
           <CustomPagination
-            data={beers}
+            data={customFilter !== "" ? filteredBeers : beers}
             pageLimit={5}
             dataLimit={20}
             RenderComponent={CustomBeerCard}
+            filter={customFilter}
           />
         </div>
       ) : (
         <LoadingComponent />
       )}
-
-      {/* <div>
-        {beers.length > 0 ? (
-          <>
-            <Pagination
-              data={beers}
-              RenderComponent={BeerCard}
-              title="Posts"
-              pageLimit={5}
-              dataLimit={10}
-            />
-          </>
-        ) : (
-          <h1>No Posts to display</h1>
-        )}
-      </div> */}
     </>
   );
 }

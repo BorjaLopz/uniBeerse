@@ -50,7 +50,7 @@ async function main() {
       name VARCHAR(35) NOT NULL,
       style VARCHAR(45) NOT NULL,
       graduation VARCHAR(5) NOT NULL,
-      country VARCHAR(20) NOT NULL,
+      country VARCHAR(80) NOT NULL,
       uuid VARCHAR(40) NOT NULL,
       score VARCHAR(5),
       comments VARCHAR(50),

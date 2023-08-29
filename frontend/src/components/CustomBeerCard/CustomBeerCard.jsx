@@ -2,20 +2,18 @@ import "./style.css";
 import BeerIcon from "../BeerIcon";
 import { Link } from "react-router-dom";
 import { getCodeCountryByName } from "../../helpers";
+import { splitCountryName } from "../../helpers";
 
 function CustomBeerCard({ data }) {
-  // console.log("data");
-  // console.log(data);
   const { id, brand, name, style, graduation, country, img_file } = data;
-  // console.log("img_file");
-  // console.log(img_file);
 
   return (
     <Link key={id} to={`/beer/${id}`} className="currentBeer">
       <div id="beer_card">
-        <h1 id="beer_name">
-          {brand} - {name}
-        </h1>
+        <div id="beer_brand_name">
+          <h2 id="beer_brand">{brand}</h2>
+          <h2 id="beer_name">{name}</h2>
+        </div>
         {img_file === "" ? (
           <>
             <BeerIcon />
@@ -31,13 +29,54 @@ function CustomBeerCard({ data }) {
         </div>
         <div id="container_country_icon">
           <p id="beer_country">{country}</p>
-          <img
-            src={`https://flagcdn.com/w1280/${getCodeCountryByName(
-              country
-            )}.png`}
-            alt={`Bandera de ${country}`}
-            id="flag_icon"
-          />
+          {splitCountryName(country)?.length ? (
+            <>
+              {splitCountryName(country).map((item) => {
+                return (
+                  <img
+                    src={`https://flagcdn.com/w1280/${item}.png`}
+                    alt={`Bandera de ${country}`}
+                    id="flag_icon"
+                  />
+                );
+              })}
+            </>
+          ) : (
+            <img
+              src={`https://flagcdn.com/w1280/${getCodeCountryByName(
+                country
+              )}.png`}
+              alt={`Bandera de ${country}`}
+              id="flag_icon"
+            />
+          )}
+          {/* {country.includes(" / ") && country.split(" / ") && (
+            <>
+              <img
+                src={`https://flagcdn.com/w1280/${getCodeCountryByName(
+                  country.split(" / ")[0]
+                )}.png`}
+                alt={`Bandera de ${country}`}
+                id="flag_icon"
+              />
+              <img
+                src={`https://flagcdn.com/w1280/${getCodeCountryByName(
+                  country.split(" / ")[1]
+                )}.png`}
+                alt={`Bandera de ${country}`}
+                id="flag_icon"
+              />
+            </>
+          )}
+          {!country.includes(" / ") && (
+            <img
+              src={`https://flagcdn.com/w1280/${getCodeCountryByName(
+                country
+              )}.png`}
+              alt={`Bandera de ${country}`}
+              id="flag_icon"
+            />
+          )} */}
         </div>
       </div>
     </Link>
