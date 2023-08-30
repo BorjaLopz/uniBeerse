@@ -3,27 +3,32 @@ import styles from "../../public/styles.json";
 import { useState, useEffect } from "react";
 import useServer from "../hooks/useServer";
 import BeerStyleComponent from "./BeerStyleComponent/BeerStyleComponent";
+import { removingAccents } from "../helpers";
 
 function StyleCard() {
   const { style } = useParams();
   const [beers, setBeers] = useState([]);
-  const [randomElements, setRandomElements] = useState([]);
+  const [randomBeers, setRandomBeers] = useState([]);
   const { get } = useServer();
 
   const numberOfExamples = 4;
 
   const getBeers = async () => {
     const { data } = await get({ url: "/beers/all" });
-    const resultadosFiltrados = data.data.filter((objeto) =>
-      objeto.style.includes(style)
-    );
+    const resultadosFiltrados = data.data.filter((objeto) => {
+      removingAccents(objeto.name.toLowerCase()).includes(customFilter) ||
+        removingAccents(objeto.style.toLowerCase()).includes(customFilter) ||
+        removingAccents(objeto.brand.toLowerCase()).includes(customFilter) ||
+        removingAccents(objeto.country.toLowerCase()).includes(customFilter) ||
+        removingAccents(objeto.graduation.toLowerCase()).includes(customFilter);
+    });
     setBeers(resultadosFiltrados);
   };
 
-  const selectRandomElements = () => {
-    const shuffled = [...beers].sort(() => 0.5 - Math.random());
-    const selected = shuffled.slice(0, 4);
-    setRandomElements(selected);
+  const selectBeersRandom = () => {
+    const beersRandomized = [...beers].sort(() => 0.5 - Math.random());
+    const beersSelected = beersRandomized.slice(0, numberOfExamples);
+    setRandomBeers(beersSelected);
   };
 
   useEffect(() => {
@@ -31,18 +36,16 @@ function StyleCard() {
   }, []);
 
   useEffect(() => {
-    selectRandomElements();
+    selectBeersRandom();
   }, [beers]);
 
   const beerStyleExample = [];
 
   for (let i = 0; i < numberOfExamples; i++) {
-    if (randomElements[i] !== undefined) {
-      beerStyleExample.push(randomElements[i]);
+    if (randomBeers[i] !== undefined) {
+      beerStyleExample.push(randomBeers[i]);
     }
   }
-
-  console.log(beerStyleExample);
 
   return (
     <>

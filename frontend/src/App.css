@@ -1,3 +1,30 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+body,
+html {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+  font-family: Arial, sans-serif;
+}
+
+.app {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+main {
+  flex: 1;
+}
+
+footer {
+  margin-top: 4rem;
+  background-color: #eeeeee;
+  color: #000000;
+  padding: 20px;
+  border-radius: 2rem 2rem 0 0;
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.404);
+}
