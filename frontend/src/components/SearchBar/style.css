@@ -16,9 +16,12 @@ input {
 }
 
 input:hover,
-input:focus {
+input:focus, 
+textarea:focus, 
+textarea:hover {
   border: 1.5px solid #3354a2;
   background-color: white;
+  outline: none;
 }
 
 #search-icon {

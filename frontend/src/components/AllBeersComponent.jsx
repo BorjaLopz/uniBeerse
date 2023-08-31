@@ -2,7 +2,7 @@ import { useEffect, useState, useContext } from "react";
 import useServer from "../hooks/useServer";
 import LoadingComponent from "./LoadingComponent";
 
-import CustomPagination from "./CustomPagination";
+import CustomPagination from "./CustomPagination/CustomPagination";
 import CustomBeerCard from "./CustomBeerCard/CustomBeerCard";
 import { removingAccents } from "../helpers";
 
@@ -48,7 +48,7 @@ function AllBeersComponent({ customFilter }) {
       {/* <AllBeersComponent /> */}
       {/* <SearchBar data={beers} /> */}
       {loading ? (
-        <div>
+        <main>
           <CustomPagination
             data={customFilter !== "" ? filteredBeers : beers}
             pageLimit={5}
@@ -56,7 +56,7 @@ function AllBeersComponent({ customFilter }) {
             RenderComponent={CustomBeerCard}
             filter={customFilter}
           />
-        </div>
+        </main>
       ) : (
         <LoadingComponent />
       )}

@@ -1,17 +1,14 @@
 import redes from "../../../public/redes.json";
-import { Link, Location, useLocation } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import "./style.css";
 import { useEffect } from "react";
 
 function Footer() {
   const location = useLocation();
 
-  console.log("location");
-  console.log(location);
-
   useEffect(() => {
-    // window.scrollTo({ behavior: "smooth", top: "0px" });
-    console.log("location has changed: ", location);
+    window.scrollTo({ behavior: "smooth", top: "0px" });
+    // console.log("location has changed: ", location);
   }, [location]);
 
   return (
@@ -50,7 +47,7 @@ function Footer() {
 
         <article className="container-column">
           <h3 className="column-title">Enlaces Rápidos</h3>
-          <ul>
+          <ul className="column-animation">
             <li>
               <Link to={"/"}>Inicio</Link>
             </li>
@@ -68,7 +65,7 @@ function Footer() {
       </div>
 
       <div class="footer-bottom">
-        <p>&copy; 2023 Todos los derechos reservados.</p>
+        <p>&copy; Borja 2023</p>
       </div>
     </footer>
   );

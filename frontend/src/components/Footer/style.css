@@ -52,7 +52,7 @@ h3 {
   font-size: 2rem;
 }
 
-ul li:hover {
+.column-animation li:hover {
   animation: scaleAnimation 0.15s forwards;
 }
 
