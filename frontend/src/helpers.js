@@ -3502,7 +3502,7 @@ const countries = [
 ];
 
 function splitCountryName(_country) {
-  if (_country.includes(" / ")) {
+  if (_country?.includes(" / ")) {
     let objetoEncontrado = [];
     const countryArray = _country.split(" / ");
 
@@ -3523,7 +3523,7 @@ function splitCountryName(_country) {
 }
 
 function getCodeCountryByName(_country) {
-  if (_country.includes("/")) {
+  if (_country?.includes("/")) {
     let objetoEncontrado = [];
     const countryArray = _country.split(" / ");
 
@@ -3552,9 +3552,21 @@ function getCodeCountryByName(_country) {
 }
 
 function removingAccents(_string) {
-  return _string.normalize("NFD").replace(/[\u0300-\u036f]/g, "");
+  return _string?.normalize("NFD").replace(/[\u0300-\u036f]/g, "");
 }
 
-export { getCodeCountryByName, removingAccents, splitCountryName };
+function createRating(rating, maxValue = 5, emptyEmoji = "☆", fillEmoji = "★") {
+  const stars = fillEmoji.repeat(rating);
+  const empty = emptyEmoji.repeat(maxValue - rating);
+
+  return stars + empty;
+}
+
+export {
+  getCodeCountryByName,
+  removingAccents,
+  splitCountryName,
+  createRating,
+};
 
 /* LO QUE VAMOS A TENER QUE HACER ES SACAR UN ARRAY DE CODE_2, SI ES SOLO 1 PERFECTO, PERO SI HAY MAS DE 1 TENDREMOS QUE MOSTRAR LAS DOS BANDERAS. ESPERO QUE LO HAGAS BIEN BORJA DEL FUTURO :)*/

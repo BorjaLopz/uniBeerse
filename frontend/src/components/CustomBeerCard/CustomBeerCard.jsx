@@ -14,69 +14,59 @@ function CustomBeerCard({ data }) {
           <h2 id="beer_brand">{brand}</h2>
           <h2 id="beer_name">{name}</h2>
         </div>
-        {img_file === "" ? (
-          <>
-            <BeerIcon />
-          </>
-        ) : (
-          <>
-            <img src={img_file} alt={`Imagen de ${name}`} id="beer_image" />
-          </>
-        )}
+        <div id="beer_icon">
+          {img_file === "" ? (
+            <>
+              <BeerIcon />
+            </>
+          ) : (
+            <>
+              <img src={img_file} alt={`Imagen de ${name}`} id="beer_image" />
+            </>
+          )}
+        </div>
         <div id="container_graduation_style">
           <p id="beer_graduation">{graduation}</p>
           <p id="beer_style">{style}</p>
         </div>
         <div id="container_country_icon">
-          <p id="beer_country">{country}</p>
-          {splitCountryName(country)?.length ? (
-            <>
-              {splitCountryName(country).map((item) => {
-                return (
-                  <img
-                    src={`https://flagcdn.com/w1280/${item}.png`}
-                    alt={`Bandera de ${country}`}
-                    id="flag_icon"
-                  />
-                );
-              })}
-            </>
-          ) : (
-            <img
-              src={`https://flagcdn.com/w1280/${getCodeCountryByName(
-                country
-              )}.png`}
-              alt={`Bandera de ${country}`}
-              id="flag_icon"
-            />
-          )}
-          {/* {country.includes(" / ") && country.split(" / ") && (
-            <>
+          <div id="container_country">
+            {splitCountryName(country)?.length ? (
+              <>
+                {country
+                  .split(" /")
+                  .flat()
+                  .map((c) => {
+                    return <p id="beer_country">{c}</p>;
+                  })}
+              </>
+            ) : (
+              <p id="beer_country">{country}</p>
+            )}
+          </div>
+          <div id="container_country_flag">
+            {splitCountryName(country)?.length ? (
+              <>
+                {splitCountryName(country).map((item) => {
+                  return (
+                    <img
+                      src={`https://flagcdn.com/w1280/${item}.png`}
+                      alt={`Bandera de ${country}`}
+                      id="flag_icon"
+                    />
+                  );
+                })}
+              </>
+            ) : (
               <img
                 src={`https://flagcdn.com/w1280/${getCodeCountryByName(
-                  country.split(" / ")[0]
+                  country
                 )}.png`}
                 alt={`Bandera de ${country}`}
                 id="flag_icon"
               />
-              <img
-                src={`https://flagcdn.com/w1280/${getCodeCountryByName(
-                  country.split(" / ")[1]
-                )}.png`}
-                alt={`Bandera de ${country}`}
-                id="flag_icon"
-              />
-            </>
-          )}
-          {!country.includes(" / ") && (
-            <img
-              src={`https://flagcdn.com/w1280/${getCodeCountryByName(
-                country
-              )}.png`}
-              alt={`Bandera de ${country}`}
-              id="flag_icon"
-            />
-          )} */}
+            )}
+          </div>
         </div>
       </div>
     </Link>

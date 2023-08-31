@@ -5,6 +5,9 @@ import { Link } from "react-router-dom";
 function StylesComponent() {
   return (
     <>
+      <section id="title">
+        <h2>Estilos</h2>
+      </section>
       {styles.map((s, id) => {
         return (
           <Link key={id} to={`/style/${s.style}`} className="style-article">

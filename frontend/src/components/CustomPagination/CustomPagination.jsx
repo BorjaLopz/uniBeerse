@@ -1,4 +1,6 @@
 import { useEffect, useState } from "react";
+import "./style.css";
+
 function CustomPagination({
   data,
   dataLimit,
@@ -53,7 +55,7 @@ function CustomPagination({
 
   return (
     <>
-      <main>
+      <article>
         <section id="title">
           {/* <h1>{`Mostrando ${
             currentPage !== pages
@@ -62,11 +64,11 @@ function CustomPagination({
                 document.querySelectorAll(".currentBeer").length
           } de ${data.length}`}</h1> */}
           {data.length === 0 ? (
-            <h1>No hay ningun resultado</h1>
+            <h2>No hay ningun resultado</h2>
           ) : (
-            <h1>{`Mostrando ${
+            <h2>{`Mostrando ${
               filter === "" ? "todos los resultados" : filter
-            }`}</h1>
+            }`}</h2>
           )}
         </section>
         <section id="beer-area">
@@ -78,7 +80,7 @@ function CustomPagination({
             );
           })}
         </section>
-      </main>
+      </article>
       {data.length !== 0 && (
         <div className="pagination">
           {/* First Page */}

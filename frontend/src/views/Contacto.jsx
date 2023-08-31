@@ -1,7 +1,9 @@
+import ContactComponent from "../components/ContactComponent/ContactComponent";
+
 function Contacto() {
   return (
     <main>
-      <h1>Contacto</h1>
+      <ContactComponent />
     </main>
   );
 }

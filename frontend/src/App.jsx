@@ -4,7 +4,7 @@ import { Route, Routes } from "react-router-dom";
 import Contacto from "./views/Contacto";
 import AñadirCerveza from "./views/AñadirCerveza";
 import NotFound from "./views/NotFound";
-import BeerCard from "./components/BeerCard";
+import BeerCard from "./components/BeerCard/BeerCard";
 import Header from "./components/Header/Header";
 import { useState } from "react";
 import AllBeersPage from "./views/AllBeersPage";
