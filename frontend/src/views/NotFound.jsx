@@ -1,5 +1,12 @@
+
+import NotFoundComponent from "../components/NotFound/NotFoundComponent";
+
 function NotFound() {
-  return <h1>NOT FOUND</h1>;
+  return (
+    <main>
+      <NotFoundComponent />
+    </main>
+  );
 }
 
 export default NotFound;
