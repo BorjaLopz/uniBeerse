@@ -52,7 +52,8 @@ h3 {
   font-size: 2rem;
 }
 
-.column-animation li:hover {
+.column-animation li:hover, 
+#listado-redes li:hover {
   animation: scaleAnimation 0.15s forwards;
 }
 
