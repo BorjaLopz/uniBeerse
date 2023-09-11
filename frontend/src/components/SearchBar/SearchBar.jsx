@@ -1,7 +1,7 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import SearchIcon from "../SearchIcon";
 import { removingAccents } from "../../helpers";
-import { useLocation } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 
 import "./style.css";
 
@@ -15,9 +15,15 @@ function SearchBar({ handleFilter }) {
     handleFilter(LowerText);
   };
 
+  //Reseteamos el filtro cada vez que cambiamos de página
+  useEffect(() => {
+    setInputText("");
+    handleFilter("");
+  }, [location]);
+
   return (
     <>
-      {location.pathname === "/beers" ? (
+      {location.pathname.split("/").slice(0, 3).join("/") === "/beers/page" ? (
         <>
           {" "}
           <section id="search-bar-input">

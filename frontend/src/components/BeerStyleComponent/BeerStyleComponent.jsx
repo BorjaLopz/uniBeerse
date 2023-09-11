@@ -4,9 +4,10 @@ import "./style.css";
 import { Link } from "react-router-dom";
 
 function BeerStyleComponent({ b }) {
+  console.log(b);
   return (
     <>
-      <Link key={b?.id} to={`/beer/${b?.id}`} className="currentBeer_style">
+      <Link key={b?.id} to={`/beer/${b?.id - 1}`} className="currentBeer_style">
         <div id="beer_card_style">
           <div id="beer_brand_name">
             <h2 id="beer_brand">{b?.brand}</h2>

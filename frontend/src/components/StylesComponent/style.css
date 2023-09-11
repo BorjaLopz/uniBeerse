@@ -7,18 +7,27 @@
   flex-wrap: nowrap;
 }
 
-.style-article {
+.style-article,
+.style-article-disable {
   display: flex;
   flex-direction: column;
   width: 80%;
   align-items: center;
   min-height: 8rem;
   border-radius: 1rem;
+}
+
+.style-article {
   background-color: #eeeeee;
   box-shadow: 0 0 5px rgba(0, 0, 0, 0.404);
 }
 
-.style-article:hover{
+.style-article-disable {
+  background-color: #c92424;
+  box-shadow: 0 0 5px rgba(252, 1, 1, 0.404);
+}
+
+.style-article:hover {
   background-color: #3354a221;
   box-shadow: 0 0 5px #3354a2be;
 }

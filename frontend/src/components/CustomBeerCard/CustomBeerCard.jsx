@@ -8,7 +8,7 @@ function CustomBeerCard({ data }) {
   const { id, brand, name, style, graduation, country, img_file } = data;
 
   return (
-    <Link key={id} to={`/beer/${id}`} className="currentBeer">
+    <Link key={id} to={`/beer/${id - 1}`} className="currentBeer">
       <div id="beer_card">
         <div id="beer_brand_name">
           <h2 id="beer_brand">{brand}</h2>
@@ -21,7 +21,11 @@ function CustomBeerCard({ data }) {
             </>
           ) : (
             <>
-              <img src={img_file} alt={`Imagen de ${name}`} id="beer_image" />
+              <img
+                src={`../../../${img_file}`}
+                alt={`Imagen de ${name}`}
+                id="beer_image"
+              />
             </>
           )}
         </div>

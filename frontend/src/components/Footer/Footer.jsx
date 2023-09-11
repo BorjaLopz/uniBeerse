@@ -31,11 +31,11 @@ function Footer() {
                   <li key={r.id}>
                     {r.name !== "Email" ? (
                       <Link to={`${r.url}`} target="_blank" className="icon">
-                        <img src={`${r.icon}.png`} alt={`${r.name}`} />
+                        <img src={`../../../${r.icon}.png`} alt={`${r.name}`} />
                       </Link>
                     ) : (
                       <a href={`mailto:${r.url}`} className="icon">
-                        <img src={`${r.icon}.png`} alt={`${r.name}`} />
+                        <img src={`../../../${r.icon}.png`} alt={`${r.name}`} />
                       </a>
                     )}
                   </li>
@@ -64,7 +64,7 @@ function Footer() {
         </article>
       </div>
 
-      <div class="footer-bottom">
+      <div className="footer-bottom">
         <p>&copy; Borja 2023</p>
       </div>
     </footer>

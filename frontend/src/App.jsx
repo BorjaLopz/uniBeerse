@@ -27,9 +27,16 @@ function App() {
           path="/beers"
           element={<AllBeersPage customFilter={customFilter} />}
         />
+        <Route
+          path={`/beers/page/:numberPage`}
+          element={<AllBeersPage customFilter={customFilter} />}
+        />
         <Route path={`/beer/:id`} element={<BeerCard />} />
         <Route path="/styles" element={<StylesPage />} />
-        <Route path="/style/:style" element={<StyleCard />} />
+        <Route
+          path="/style/:style"
+          element={<StyleCard stylejson={"../public/style.json"} />}
+        />
         <Route path="/*" element={<NotFound />} />
       </Routes>
       <Footer />

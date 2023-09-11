@@ -15,11 +15,11 @@ function Header({ handleCustomFilter }) {
     <>
       <header>
         <div id="mainIcon">
-          <img src="mainIcon.svg" alt="Icono Borja" />
+          <img src="../../../mainIcon.svg" alt="Icono Borja" />
         </div>
         <menu>
           <Link to="/">Inicio</Link>
-          <Link to="/beers">Cervezas</Link>
+          <Link to="/beers/page/1">Cervezas</Link>
           <Link to="/styles">Estilos</Link>
           <Link to="/contact">Contacto</Link>
         </menu>
