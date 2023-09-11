@@ -58,6 +58,7 @@ h3 {
 }
 
 .footer-bottom {
+  border-radius: 8px;
   background-color: #dddddd;
   text-align: center;
   padding: 10px 0;

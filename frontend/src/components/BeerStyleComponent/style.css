@@ -28,6 +28,11 @@ ul {
   align-items: center;
 }
 
+.currentBeer_style:hover {
+  background-color: #3354a221;
+  box-shadow: 0 0 5px #3354a2be;
+}
+
 #beer_card_style {
   height: 100%;
   width: 100%;
@@ -35,7 +40,7 @@ ul {
   flex-direction: column;
   padding: 1rem;
 }
-#beer_icon_style { 
+#beer_icon_style {
   flex-grow: 1;
   display: flex;
   flex-direction: column;

@@ -1,4 +1,4 @@
-import { useParams } from "react-router-dom";
+import { useParams, Link, useNavigate } from "react-router-dom";
 import "./style.css";
 
 import { useState, useEffect } from "react";
@@ -9,12 +9,38 @@ import { splitCountryName, getCodeCountryByName } from "../../helpers";
 function BeerCard() {
   const { get } = useServer();
   const [beer, setBeer] = useState({});
+  const [previousBeer, setPreviousBeer] = useState({});
+  const [nextBeer, setNextBeer] = useState({});
   const { id } = useParams();
+  const idInteger = parseInt(id);
+  const navigate = useNavigate();
 
   const fetchBeerId = async () => {
     try {
-      const { data } = await get({ url: `/beer/id/${id}` });
+      const { data } = await get({ url: `/beer/id/${idInteger + 1}` });
+
+      if (!data) {
+        navigate("/404");
+      }
       setBeer(data.data[0]);
+    } catch (e) {
+      console.log("Error: ", e.message);
+    }
+  };
+
+  const fetchPreviousBeer = async () => {
+    try {
+      const { data } = await get({ url: `/beer/id/${idInteger}` });
+      setPreviousBeer(data?.data[0]);
+    } catch (e) {
+      console.log("Error: ", e.message);
+    }
+  };
+
+  const fetchNextsBeer = async () => {
+    try {
+      const { data } = await get({ url: `/beer/id/${idInteger + 2}` });
+      setNextBeer(data?.data[0]);
     } catch (e) {
       console.log("Error: ", e.message);
     }
@@ -22,11 +48,24 @@ function BeerCard() {
 
   useEffect(() => {
     fetchBeerId();
-  }, []);
+    fetchPreviousBeer();
+    fetchNextsBeer();
+  }, [id]);
 
   return (
     <main>
       <section className="main-container">
+        <Link to={`/beer/${idInteger - 1}`}>
+          {idInteger !== 0 ? (
+            <>
+              <div className="arrow left">
+                <img src="/icons/LeftArrow.svg" alt="" />
+              </div>
+            </>
+          ) : (
+            ""
+          )}
+        </Link>
         <div className="_beerCard">
           <div id="beer_icon_card">
             {beer.img_file !== "" ? (
@@ -113,6 +152,18 @@ function BeerCard() {
             )}
           </div> */}
         </div>
+
+        <Link to={`/beer/${idInteger + 1}`}>
+          {nextBeer !== undefined ? (
+            <>
+              <div className="arrow rigth">
+                <img src="/icons/RigthArrow.svg" alt="" />
+              </div>
+            </>
+          ) : (
+            ""
+          )}
+        </Link>
       </section>
     </main>
   );

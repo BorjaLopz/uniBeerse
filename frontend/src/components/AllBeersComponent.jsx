@@ -1,6 +1,6 @@
 import { useEffect, useState, useContext } from "react";
 import useServer from "../hooks/useServer";
-import LoadingComponent from "./LoadingComponent";
+import LoadingComponent from "./LoadingComponent/LoadingComponent";
 
 import CustomPagination from "./CustomPagination/CustomPagination";
 import CustomBeerCard from "./CustomBeerCard/CustomBeerCard";
@@ -47,8 +47,8 @@ function AllBeersComponent({ customFilter }) {
     <>
       {/* <AllBeersComponent /> */}
       {/* <SearchBar data={beers} /> */}
-      {loading ? (
-        <main>
+      <main>
+        {loading ? (
           <CustomPagination
             data={customFilter !== "" ? filteredBeers : beers}
             pageLimit={5}
@@ -56,10 +56,10 @@ function AllBeersComponent({ customFilter }) {
             RenderComponent={CustomBeerCard}
             filter={customFilter}
           />
-        </main>
-      ) : (
-        <LoadingComponent />
-      )}
+        ) : (
+          <LoadingComponent />
+        )}
+      </main>
     </>
   );
 }

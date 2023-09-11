@@ -4,13 +4,13 @@ import { Link } from "react-router-dom";
 import "./style.css";
 
 const images = [
-  "../../../public/BeerIcons/Beer_1.svg",
-  "../../../public/BeerIcons/Beer_2.svg",
-  "../../../public/BeerIcons/Beer_3.svg",
-  "../../../public/BeerIcons/Beer_4.svg",
-  "../../../public/BeerIcons/Beer_5.svg",
-  "../../../public/BeerIcons/Beer_6.svg",
-  "../../../public/BeerIcons/Beer_7.svg",
+  "/BeerIcons/Beer_1.svg",
+  "/BeerIcons/Beer_2.svg",
+  "/BeerIcons/Beer_3.svg",
+  "/BeerIcons/Beer_4.svg",
+  "/BeerIcons/Beer_5.svg",
+  "/BeerIcons/Beer_6.svg",
+  "/BeerIcons/Beer_7.svg",
 ];
 
 function HomePageComponent() {
@@ -19,13 +19,13 @@ function HomePageComponent() {
     alignItems: "center",
     justifyContent: "center",
     backgroundSize: "cover",
-    height: "25rem",
+    height: "15rem",
   };
   return (
     <div className="home-component">
       <div className="container-title">
         <h2>UNI</h2>
-        <img src="../../../public/favicon.svg" alt="beer" />
+        <img src="/favicon.svg" alt="beer" />
         <h2>SE</h2>
       </div>
       <p>¡Bienvenido/a!</p>
@@ -60,7 +60,7 @@ function HomePageComponent() {
             <h3 id="first-paragraph">
               Explora, Celebra, Comparte: ¡La Cerveza une a Todos!
             </h3>
-            <img src="../../../public/arrow.svg" alt="flecha" />
+            <img src="/arrow.svg" alt="flecha" />
           </div>
         </Link>
       </div>

@@ -7,7 +7,7 @@ function NotFoundComponent() {
       <img
         alt="not_found_image"
         className="not-found-image"
-        src="../../icons/404_2.svg"
+        src="../../icons/404_1.svg"
       />
       <h2>No has roto internet, pero no hemos encontrado lo que querías buscar</h2>
       <Link to="/">

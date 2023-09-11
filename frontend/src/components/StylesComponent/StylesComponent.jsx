@@ -10,12 +10,30 @@ function StylesComponent() {
       </section>
       {styles.map((s, id) => {
         return (
-          <Link key={id} to={`/style/${s.style}`} className="style-article">
-            <article id="article-style">
-              <h2>{s.style}</h2>
-              <p>{s.description}</p>
-            </article>
-          </Link>
+          <>
+            {s.active ? (
+              <Link
+                key={id}
+                to={`/style/${s.itemKey}`}
+                className="style-article"
+              >
+                <article id="article-style">
+                  <h2>{s.style}</h2>
+                  <p>{s.description}</p>
+                </article>
+              </Link>
+            ) : (
+              <>
+                {" "}
+                <section className="style-article-disable">
+                  <article id="article-style">
+                    <h2>{s.style}</h2>
+                    <p>{s.description}</p>
+                  </article>
+                </section>
+              </>
+            )}
+          </>
         );
       })}
     </>

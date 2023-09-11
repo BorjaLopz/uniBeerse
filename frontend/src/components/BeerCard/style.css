@@ -49,7 +49,7 @@ main {
   justify-content: space-around;
 }
 
-#informacion_card #container_graduation_style_beerCard p { 
+#informacion_card #container_graduation_style_beerCard p {
   font-size: 1.2rem;
 }
 
@@ -61,10 +61,6 @@ main {
   justify-content: space-around;
 }
 
-#container_country_card p {
-  font-size: 1.2rem;
-}
-
 
 #beer_icon_card {
   display: flex;
@@ -72,6 +68,7 @@ main {
   align-items: center;
   justify-items: center;
   border-radius: 1rem 0 0 1rem;
+  max-width: 14rem;
 
   box-shadow: 1px 0 5px rgba(0, 0, 0, 0.24);
 }
@@ -86,6 +83,46 @@ main {
   width: 5rem;
 }
 
+
 #flag_icon_card {
   width: 4rem;
+}
+
+.arrow {
+  padding: 10px 20px;
+  position: absolute;
+  top: 30%;
+  border-radius: 5px;
+  background-color: #eeeeee;
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.404);
+}
+
+.arrow:hover {
+  background-color: #3354a221;
+  box-shadow: 0 0 5px #3354a2be;
+}
+
+.arrow img {
+  width: 1.5rem;
+  height: 1.5rem;
+}
+
+.left {
+  left: 100px;
+  margin-right: auto;
+}
+
+.rigth {
+  right: 100px;
+  margin-left: auto;
+}
+
+.main-container {
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 40vh;
 }
