@@ -31,7 +31,6 @@ main {
   display: flex;
   flex-direction: column;
   align-items: center;
-  /* background-color: blue; */
 }
 
 .currentBeer:hover {
@@ -143,7 +142,7 @@ button.disabled {
 #container_country_icon {
   display: flex;
   flex-direction: row;
-  max-height:fit-content;
+  max-height: fit-content;
   height: 10%;
   justify-content: space-between;
   flex: 10;
@@ -158,8 +157,6 @@ button.disabled {
 #container_country_icon * {
   flex: 1;
 }
-
-
 
 #container_country_icon p {
   text-align: center;
@@ -205,6 +202,10 @@ button.disabled {
   overflow: hidden;
   object-fit: contain;
   flex: 50;
+}
+
+#beer_icon img {
+  max-height: 60%;
 }
 
 #beer_graduation {

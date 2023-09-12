@@ -1,4 +1,3 @@
-const arrowTop = "/BeerIcons/FlechaArriba.svg";
 import { useState, useEffect } from "react";
 import "./style.css";
 
@@ -25,7 +24,7 @@ function ScrollTopComponent() {
         // style={{ display: isVisible ? "block" : "none" }}
         onClick={goTop}
       >
-        <img src="/icons/FlechaArriba.svg" alt="" />
+        <img src="/icons/FlechaArriba.svg" alt="Flecha arriba" />
       </button>
     </>
   );

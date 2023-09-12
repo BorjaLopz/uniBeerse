@@ -34,8 +34,6 @@ function Pagination({ data, RenderComponent, title, pageLimit, dataLimit }) {
 
       {/* show the posts, 10 posts at a time */}
       <div className="dataContainer">
-        {console.log("getpaginatedData")}
-        {console.log(getPaginatedData)}
         {getPaginatedData().map((d, idx) => (
           <RenderComponent key={idx} data={d} />
         ))}

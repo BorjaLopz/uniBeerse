@@ -15,6 +15,7 @@ function BeerCard() {
   const idInteger = parseInt(id);
   const navigate = useNavigate();
 
+  console.log(beer);
   const fetchBeerId = async () => {
     try {
       const { data } = await get({ url: `/beer/id/${idInteger + 1}` });
@@ -74,7 +75,7 @@ function BeerCard() {
                 alt={`Imagen de ${beer.brand} | ${beer.name}`}
               />
             ) : (
-              <BeerIcon />
+              <BeerIcon style={beer.style} />
             )}
           </div>
           <div id="informacion_card">
@@ -127,32 +128,19 @@ function BeerCard() {
               )}
             </div>
           </div>
-          {/* <div id="container_country_icon">
-            <p id="beer_country">{beer?.country}</p>
-            {splitCountryName(beer?.country)?.length ? (
-              <>
-                {splitCountryName(beer?.country).map((item) => {
-                  return (
-                    <img
-                      src={`https://flagcdn.com/w1280/${item}.png`}
-                      alt={`Bandera de ${beer?.country}`}
-                      id="flag_icon"
-                    />
-                  );
-                })}
-              </>
-            ) : (
-              <img
-                src={`https://flagcdn.com/w1280/${getCodeCountryByName(
-                  country
-                )}.png`}
-                alt={`Bandera de ${beer?.country}`}
-                id="flag_icon"
-              />
-            )}
-          </div> */}
         </div>
 
+        {beer?.comments ? (
+          <div id="commentas_card">
+            {/* Comentarios */}
+            <div id="comments_beer_card">
+              <h2 id="h2_notas">Notas</h2>
+              <h2 id="comment">{beer?.comments}</h2>
+            </div>
+          </div>
+        ) : (
+          <></>
+        )}
         <Link to={`/beer/${idInteger + 1}`}>
           {nextBeer !== undefined ? (
             <>

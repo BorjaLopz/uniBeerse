@@ -9,7 +9,7 @@ import Header from "./components/Header/Header";
 import { useState } from "react";
 import AllBeersPage from "./views/AllBeersPage";
 import StylesPage from "./views/StylesPages";
-import StyleCard from "./components/StyleCard";
+import StyleCard from "./components/StyleCardComponent/StyleCard";
 import HomePage from "./views/HomePage";
 import Footer from "./components/Footer/Footer";
 

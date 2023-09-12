@@ -48,8 +48,8 @@ ul {
   place-self: center;
 }
 
-#beer_icon_style svg {
-  width: 8rem;
+#beer_icon_style img {
+  width: 2rem;
   height: 100%;
 }
 

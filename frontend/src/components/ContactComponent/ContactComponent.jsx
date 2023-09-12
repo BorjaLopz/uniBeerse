@@ -55,7 +55,6 @@ function ContactComponent() {
     <>
       <div id="contactoBorja">
         <h2>Formulario contacto</h2>
-        <h2>Borja López Díaz</h2>
       </div>
       <fieldset className="fieldset_general">
         <form ref={form} onSubmit={handleSubmitForm} className="first_form">
@@ -112,27 +111,6 @@ function ContactComponent() {
           <button type="submit">Enviar</button>
         </form>
       </fieldset>
-
-      {/* <section className="redes">
-        <p>También puedes visitar mis redes</p>
-        <ul>
-          {redes.map((r) => {
-            return (
-              <li key={r.id}>
-                {r.name !== "Email" ? (
-                  <Link to={`${r.url}`} target="_blank" className={`icon`}>
-                    <img src={`${r.icon}.png`} alt={`${r.name}`} />
-                  </Link>
-                ) : (
-                  <a href={`mailto:${r.url}`} className="icon">
-                    <img src={`${r.icon}.png`} alt={`${r.name}`} />
-                  </a>
-                )}
-              </li>
-            );
-          })}
-        </ul>
-      </section> */}
     </>
   );
 }

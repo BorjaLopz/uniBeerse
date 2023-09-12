@@ -1,4 +1,3 @@
-import { splitCountryName } from "../../helpers";
 import BeerIcon from "../BeerIcon";
 import ScrollTopComponent from "../ScrollTop/ScrollTopComponent";
 import "./style.css";
@@ -15,7 +14,7 @@ function BeerStyleComponent({ b }) {
           </div>
           {b?.img_file === "" ? (
             <div id="beer_icon_style">
-              <BeerIcon />
+              <BeerIcon style={b?.style?.toLowerCase()} />
             </div>
           ) : (
             <>
