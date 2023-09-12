@@ -93,7 +93,7 @@ function StyleCard() {
             return (
               <>
                 {s.itemKey === style ? (
-                  <div>
+                  <div key={id}>
                     <h2>Cervezas estilo {s.style.toLowerCase()}</h2>
                     <p>{s.description}</p>
                   </div>

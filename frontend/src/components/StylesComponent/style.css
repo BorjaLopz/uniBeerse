@@ -18,13 +18,13 @@
 }
 
 .style-article {
-  background-color: #eeeeee;
+  background-color: #eeeeeeb0;
   box-shadow: 0 0 5px rgba(0, 0, 0, 0.404);
 }
 
 .style-article-disable {
-  background-color: #c92424;
-  box-shadow: 0 0 5px rgba(252, 1, 1, 0.404);
+  background-color: #dddddd;
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.404);
 }
 
 .style-article:hover {

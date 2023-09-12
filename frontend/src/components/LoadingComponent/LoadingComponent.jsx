@@ -3,7 +3,7 @@ import "./style.css";
 function LoadingComponent() {
   return (
     <div className="grid gap-4 place-content-center items-center my-10">
-      <span class="loader"></span>
+      <span className="loader"></span>
     </div>
     // <div className="grid gap-4 place-content-center items-center my-10">
     //   <svg

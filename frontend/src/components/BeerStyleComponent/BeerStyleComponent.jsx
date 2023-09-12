@@ -1,10 +1,10 @@
 import { splitCountryName } from "../../helpers";
 import BeerIcon from "../BeerIcon";
+import ScrollTopComponent from "../ScrollTop/ScrollTopComponent";
 import "./style.css";
 import { Link } from "react-router-dom";
 
 function BeerStyleComponent({ b }) {
-  console.log(b);
   return (
     <>
       <Link key={b?.id} to={`/beer/${b?.id - 1}`} className="currentBeer_style">
@@ -32,36 +32,9 @@ function BeerStyleComponent({ b }) {
           </div>
         </div>
       </Link>
+      <ScrollTopComponent />
     </>
   );
 }
 
 export default BeerStyleComponent;
-
-/*<div id="container_country_icon">
-          <p id="beer_country">{b?.country}</p>
-          {splitCountryName(b?.country)?.length ? (
-            <>
-              {splitCountryName(country).map((item) => {
-                return (
-                  <img
-                    src={`https://flagcdn.com/w1280/${item}.png`}
-                    alt={`Bandera de ${b?.country}`}
-                    id="flag_icon"
-                  />
-                );
-              })}
-            </>
-          ) : (
-            <img
-              src={`https://flagcdn.com/w1280/${getCodeCountryByName(
-                b?.country
-              )}.png`}
-              alt={`Bandera de ${b?.country}`}
-              id="flag_icon"
-            />
-          )}
-          }
-        </div>
-
-        */

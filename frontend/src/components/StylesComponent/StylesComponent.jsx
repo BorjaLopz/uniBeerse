@@ -1,4 +1,5 @@
 import styles from "../../../public/styles.json";
+import ScrollTopComponent from "../ScrollTop/ScrollTopComponent";
 import "./style.css";
 import { Link } from "react-router-dom";
 
@@ -36,6 +37,7 @@ function StylesComponent() {
           </>
         );
       })}
+      <ScrollTopComponent />
     </>
   );
 }

@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import "./style.css";
 import { Link, useParams, useNavigate } from "react-router-dom";
+import ScrollTopComponent from "../ScrollTop/ScrollTopComponent";
 
 function CustomPagination({
   data,
@@ -143,6 +144,7 @@ function CustomPagination({
           </div>
         )}
       </>
+      <ScrollTopComponent />
     </>
   );
 }
