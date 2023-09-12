@@ -17,7 +17,7 @@ function CustomBeerCard({ data }) {
         <div id="beer_icon">
           {img_file === "" ? (
             <>
-              <BeerIcon />
+              <BeerIcon style={style} />
             </>
           ) : (
             <>

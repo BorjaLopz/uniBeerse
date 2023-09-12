@@ -56,20 +56,3 @@ function SearchBar({ handleFilter }) {
 }
 
 export default SearchBar;
-
-/*{currentPath === "/beers" ?  (<>
-      <section id="search-bar-input">
-        <div>
-          <input
-            type="search"
-            name="search"
-            placeholder="Busqueda"
-            onChange={inputHandler}
-          />
-          <div id="search-icon">
-            <SearchIcon />
-          </div>
-        </div>
-      </section>
-    </>) : ""})
-    */

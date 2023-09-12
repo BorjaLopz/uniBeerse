@@ -1,10 +1,11 @@
 import { useParams, useNavigate } from "react-router-dom";
-import styles from "../../public/styles.json";
 import { useState, useEffect } from "react";
-import useServer from "../hooks/useServer";
-import BeerStyleComponent from "./BeerStyleComponent/BeerStyleComponent";
-import stylejson from "../../public/styles.json";
-import LoadingComponent from "./LoadingComponent/LoadingComponent";
+import useServer from "../../hooks/useServer";
+import BeerStyleComponent from "../BeerStyleComponent/BeerStyleComponent";
+import stylejson from "../../../public/styles.json";
+import LoadingComponent from "../LoadingComponent/LoadingComponent";
+import { removingAccents } from "../../helpers";
+import "./style.css";
 
 function StyleCard() {
   const { style } = useParams();
@@ -20,20 +21,39 @@ function StyleCard() {
   const numberOfExamples = 4;
 
   const getCurrentStyle = () => {
-    const [styleFiltered] = stylejson.filter(
-      (s) => s.itemKey.toLowerCase() === style.toLowerCase()
-    );
-    if (!styleFiltered) {
-      navigate("/404");
+    if (style.split(" ").length > 1) {
+      const [styleFiltered] = stylejson.filter(
+        (s) =>
+          s.itemKey.toLowerCase() === style.split(" ").slice(0)[0].toLowerCase()
+      );
+      if (!styleFiltered) {
+        navigate("/404");
+      }
+      setCurrentStyle(styleFiltered);
+    } else {
+      const [styleFiltered] = stylejson.filter(
+        (s) => s.itemKey.toLowerCase() === style.toLowerCase()
+      );
+      if (!styleFiltered) {
+        navigate("/404");
+      }
+      setCurrentStyle(styleFiltered);
     }
-    setCurrentStyle(styleFiltered);
   };
 
   const getBeers = async () => {
     const { data } = await get({ url: "/beers/all" });
 
     const filteredBeers = data.data.filter((b) => {
-      // console.log(currentStyle?.itemKey?.toLowerCase());
+      if (style.split(" ").length > 1) {
+        if (
+          b?.style?.toLowerCase().includes(style.split(" ").slice(0)[0]) &&
+          removingAccents(style.split(" ").slice(-1)[0]) ===
+            removingAccents(b?.country.toLowerCase())
+        ) {
+          return b;
+        }
+      }
       if (b?.style?.toLowerCase() === currentStyle?.itemKey?.toLowerCase()) {
         return b;
       }
@@ -89,7 +109,7 @@ function StyleCard() {
     <>
       <main>
         <article id="description_style">
-          {styles.map((s, id) => {
+          {stylejson.map((s, id) => {
             return (
               <>
                 {s.itemKey === style ? (
@@ -110,8 +130,7 @@ function StyleCard() {
           <article id="ejemplos-cerveza">
             {randomBeers.length > 0 ? (
               <>
-                <h2>{`Ejemplos de cervezas ${style.toLowerCase()}`}</h2>
-                <ul>
+                <ul id="beer_examples">
                   {randomBeers.map((b) => {
                     if (b !== undefined) {
                       return <BeerStyleComponent b={b} />;

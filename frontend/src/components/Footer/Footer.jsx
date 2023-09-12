@@ -8,20 +8,11 @@ function Footer() {
 
   useEffect(() => {
     window.scrollTo({ behavior: "smooth", top: "0px" });
-    // console.log("location has changed: ", location);
   }, [location]);
 
   return (
     <footer>
       <div className="container-footer">
-        {/* <article className="container-column">
-          <h3>Acerca de Nosotros</h3>
-          <p>
-            Somos una empresa dedicada a brindar soluciones creativas y
-            efectivas.
-          </p>
-        </article> */}
-
         <article className="container-column">
           <section className="redes-icon">
             <h3 className="column-title">Mis redes</h3>
@@ -31,11 +22,17 @@ function Footer() {
                   <li key={r.id}>
                     {r.name !== "Email" ? (
                       <Link to={`${r.url}`} target="_blank" className="icon">
-                        <img src={`../../../${r.icon}.png`} alt={`${r.name}`} />
+                        <img
+                          src={`../../../icons/${r.icon}.png`}
+                          alt={`${r.name}`}
+                        />
                       </Link>
                     ) : (
                       <a href={`mailto:${r.url}`} className="icon">
-                        <img src={`../../../${r.icon}.png`} alt={`${r.name}`} />
+                        <img
+                          src={`../../../icons/${r.icon}.png`}
+                          alt={`${r.name}`}
+                        />
                       </a>
                     )}
                   </li>

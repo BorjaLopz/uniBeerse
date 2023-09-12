@@ -61,12 +61,6 @@ function CustomPagination({
       <>
         <article>
           <section id="title">
-            {/* <h1>{`Mostrando ${
-            currentPage !== pages
-              ? dataLimit * currentPage
-              : dataLimit * (currentPage - 1) +
-                document.querySelectorAll(".currentBeer").length
-          } de ${data.length}`}</h1> */}
             {data.length === 0 ? (
               <h2>No hay ningun resultado</h2>
             ) : (
