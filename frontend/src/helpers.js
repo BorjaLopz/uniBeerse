@@ -2143,7 +2143,7 @@ const countries = [
   },
   {
     name_en: "Netherlands",
-    name_es: "Países Bajos",
+    name_es: "Holanda",
     continent_en: "Europe",
     continent_es: "Europa",
     capital_en: "Amsterdam",
