@@ -15,14 +15,19 @@ function BeerCard() {
   const idInteger = parseInt(id);
   const navigate = useNavigate();
 
-  console.log(beer);
   const fetchBeerId = async () => {
     try {
-      const { data } = await get({ url: `/beer/id/${idInteger + 1}` });
+      const res = await fetch(
+        `https://primer-proyecto-nodejs.glitch.me/api/v1/beer/id/${
+          idInteger + 1
+        }`
+      );
+      const data = await res.json();
 
       if (!data) {
         navigate("/404");
       }
+
       setBeer(data.data[0]);
     } catch (e) {
       console.log("Error: ", e.message);
@@ -31,7 +36,12 @@ function BeerCard() {
 
   const fetchPreviousBeer = async () => {
     try {
-      const { data } = await get({ url: `/beer/id/${idInteger}` });
+      const res = await fetch(
+        `https://primer-proyecto-nodejs.glitch.me/api/v1/beer/id/${idInteger}`
+      );
+
+      const data = await res.json();
+
       setPreviousBeer(data?.data[0]);
     } catch (e) {
       console.log("Error: ", e.message);
@@ -40,7 +50,14 @@ function BeerCard() {
 
   const fetchNextsBeer = async () => {
     try {
-      const { data } = await get({ url: `/beer/id/${idInteger + 2}` });
+      const res = await fetch(
+        `https://primer-proyecto-nodejs.glitch.me/api/v1/beer/id/${
+          idInteger + 2
+        }`
+      );
+
+      const data = await res.json();
+
       setNextBeer(data?.data[0]);
     } catch (e) {
       console.log("Error: ", e.message);

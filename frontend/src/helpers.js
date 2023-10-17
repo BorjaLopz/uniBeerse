@@ -3277,7 +3277,7 @@ const countries = [
   },
   {
     name_en: "United Kingdom",
-    name_es: "Reino Unido",
+    name_es: "Inglaterra",
     continent_en: "Europe",
     continent_es: "Europa",
     capital_en: "London",

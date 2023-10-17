@@ -42,24 +42,31 @@ function StyleCard() {
   };
 
   const getBeers = async () => {
-    const { data } = await get({ url: "/beers/all" });
+    try {
+      const res = await fetch(
+        "https://primer-proyecto-nodejs.glitch.me/api/v1/beers/all"
+      );
+      const data = await res.json();
+      setBeers(data.data);
 
-    const filteredBeers = data.data.filter((b) => {
-      if (style.split(" ").length > 1) {
-        if (
-          b?.style?.toLowerCase().includes(style.split(" ").slice(0)[0]) &&
-          removingAccents(style.split(" ").slice(-1)[0]) ===
-            removingAccents(b?.country.toLowerCase())
-        ) {
+      const filteredBeers = data.data.filter((b) => {
+        if (style.split(" ").length > 1) {
+          if (
+            b?.style?.toLowerCase().includes(style.split(" ").slice(0)[0]) &&
+            removingAccents(style.split(" ").slice(-1)[0]) ===
+              removingAccents(b?.country.toLowerCase())
+          ) {
+            return b;
+          }
+        }
+        if (b?.style?.toLowerCase() === currentStyle?.itemKey?.toLowerCase()) {
           return b;
         }
-      }
-      if (b?.style?.toLowerCase() === currentStyle?.itemKey?.toLowerCase()) {
-        return b;
-      }
-    });
-
-    setBeers(filteredBeers);
+      });
+      setBeers(filteredBeers);
+    } catch (e) {
+      console.error(`Error: ${e}`);
+    }
   };
 
   const selectBeersRandom = () => {
