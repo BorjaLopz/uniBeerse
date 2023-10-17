@@ -17,9 +17,23 @@ function AllBeersComponent({ customFilter }) {
   const itemsPerPage = 10;
 
   const getBeers = async () => {
-    const { data } = await get({ url: "/beers/all" });
-    setLoading(true);
-    setBeers(data.data);
+    try {
+      const res = await fetch(
+        "https://primer-proyecto-nodejs.glitch.me/api/v1/beers/all"
+      );
+      const data = await res.json();
+      setBeers(data.data);
+      setLoading(true)
+    } catch (e) {
+      console.error(`Error: ${e}`);
+    }
+    // const { data } = await get({
+    //   url: "https://primer-proyecto-nodejs.glitch.me/api/v1/beers/all/beers/all",
+    // });
+    // console.log("data");
+    // console.log(data);
+    // setLoading(true);
+    // setBeers(data.data);
   };
 
   useEffect(() => {
