@@ -9,6 +9,7 @@ function CustomPagination({
   pageLimit,
   RenderComponent,
   filter,
+  isShown = true,
 }) {
   let pages = Math.ceil(data.length / dataLimit);
   const [currentPage, setCurrentPage] = useState(1);
@@ -43,8 +44,9 @@ function CustomPagination({
   };
 
   const getPaginationGroup = () => {
-    let start = Math.floor((currentPage - 1) / pageLimit) * pageLimit;
-    return new Array(pageLimit).fill().map((_, idx) => {
+    let start =
+      Math.floor((currentPage - 1) / parseInt(pageLimit)) * parseInt(pageLimit);
+    return new Array(parseInt(pageLimit)).fill().map((_, idx) => {
       return start + idx + 1;
     });
   };
@@ -69,6 +71,17 @@ function CustomPagination({
               }`}</h2>
             )}
           </section>
+          <article id="shownFilteredBeers">
+            {!isShown ? (
+              data.length > 0 ? (
+                <h2>{`Mostrando resultados de \"${filter}\"`}</h2>
+              ) : (
+                <h2>{`No hay resultados de \"${filter}\"`}</h2>
+              )
+            ) : (
+              ""
+            )}
+          </article>
           <section id="beer-area">
             {getPaginatedData().map((d, index) => {
               return (
@@ -79,7 +92,8 @@ function CustomPagination({
             })}
           </section>
         </article>
-        {data.length !== 0 && (
+
+        {data.length !== 0 && isShown && (
           <div className="pagination">
             {/* First Page */}
             <Link to={`/beers/page/1`}>

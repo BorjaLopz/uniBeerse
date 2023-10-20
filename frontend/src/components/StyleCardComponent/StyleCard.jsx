@@ -1,11 +1,14 @@
 import { useParams, useNavigate } from "react-router-dom";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import useServer from "../../hooks/useServer";
 import BeerStyleComponent from "../BeerStyleComponent/BeerStyleComponent";
 import stylejson from "../../../public/styles.json";
 import LoadingComponent from "../LoadingComponent/LoadingComponent";
 import { removingAccents } from "../../helpers";
 import "./style.css";
+
+import beerData from "/public/beer-data.json";
+import ScrollTopComponent from "../ScrollTop/ScrollTopComponent";
 
 function StyleCard() {
   const { style } = useParams();
@@ -15,6 +18,8 @@ function StyleCard() {
   const [randomBeers, setRandomBeers] = useState([]);
   const navigate = useNavigate();
   const { get } = useServer();
+
+
 
   const beerStyleExample = [];
 
@@ -47,9 +52,30 @@ function StyleCard() {
         "https://primer-proyecto-nodejs.glitch.me/api/v1/beers/all"
       );
       const data = await res.json();
-      setBeers(data.data);
 
       const filteredBeers = data.data.filter((b) => {
+        if (style.split(" ").length > 1) {
+          if (
+            b?.style?.toLowerCase().includes(style.split(" ").slice(0)[0]) &&
+            removingAccents(style.split(" ").slice(-1)[0]) ===
+              removingAccents(b?.country.toLowerCase())
+          ) {
+            return b;
+          }
+        }
+        if (b?.style?.toLowerCase() === currentStyle?.itemKey?.toLowerCase()) {
+          return b;
+        }
+      });
+      setBeers(filteredBeers);
+    } catch (e) {
+      console.error(`Error: ${e}`);
+    }
+  };
+
+  const getBeersJSON = () => {
+    try {
+      const filteredBeers = beerData.data.filter((b) => {
         if (style.split(" ").length > 1) {
           if (
             b?.style?.toLowerCase().includes(style.split(" ").slice(0)[0]) &&
@@ -97,7 +123,8 @@ function StyleCard() {
   });
 
   useEffect(() => {
-    getBeers();
+    // getBeers();
+    getBeersJSON();
   }, [currentStyle]);
 
   useEffect(() => {
@@ -137,6 +164,9 @@ function StyleCard() {
           <article id="ejemplos-cerveza">
             {randomBeers.length > 0 ? (
               <>
+                <div id="mainTitleSection">
+                  <h2>Cervezas similares</h2>
+                </div>
                 <ul id="beer_examples">
                   {randomBeers.map((b) => {
                     if (b !== undefined) {
@@ -150,6 +180,7 @@ function StyleCard() {
             )}
           </article>
         )}
+        <ScrollTopComponent />
       </main>
     </>
   );

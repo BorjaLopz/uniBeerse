@@ -6,6 +6,8 @@ import useServer from "../../hooks/useServer";
 import BeerIcon from "../BeerIcon";
 import { splitCountryName, getCodeCountryByName } from "../../helpers";
 
+import beerData from "/public/beer-data.json";
+
 function BeerCard() {
   const { get } = useServer();
   const [beer, setBeer] = useState({});
@@ -64,10 +66,55 @@ function BeerCard() {
     }
   };
 
+  const fetchCurrentBeerJSON = () => {
+    try {
+      const currentBeer = beerData.data.find((b) => {
+        if (parseInt(b.id) === parseInt(id) + 1) {
+          return b;
+        }
+      });
+
+      setBeer(currentBeer);
+    } catch (e) {
+      console.error(`Error: ${e}`);
+    }
+  };
+
+  const fetchNextBeerJSON = () => {
+    try {
+      const nextBeer = beerData.data.find((b) => {
+        if (parseInt(b.id) === parseInt(id) + 2) {
+          return b;
+        }
+      });
+
+      setNextBeer(nextBeer);
+    } catch (e) {
+      console.error(`Error: ${e}`);
+    }
+  };
+
+  const fetchPreviousBeerJSON = () => {
+    try {
+      const prevBeer = beerData.data.find((b) => {
+        if (parseInt(b.id) === parseInt(id)) {
+          return b;
+        }
+      });
+
+      setPreviousBeer(prevBeer);
+    } catch (e) {
+      console.error(`Error: ${e}`);
+    }
+  };
+
   useEffect(() => {
-    fetchBeerId();
-    fetchPreviousBeer();
-    fetchNextsBeer();
+    // fetchBeerId();
+    // fetchPreviousBeer();
+    // fetchNextsBeer();
+    fetchCurrentBeerJSON();
+    fetchNextBeerJSON();
+    fetchPreviousBeerJSON();
   }, [id]);
 
   return (
@@ -95,12 +142,13 @@ function BeerCard() {
               <BeerIcon style={beer.style} />
             )}
           </div>
-          <div id="informacion_card">
-            <div id="brand_name_beerCard">
-              <h2>{beer?.brand}</h2>
-              <h3>{beer?.name}</h3>
-            </div>
 
+          <div id="brand_name_beerCard">
+            <h2 className={`${beer?.brand?.length > 14 ? "brandShorter" : ""}`}>{beer?.brand}</h2>
+            <h3>{beer?.name}</h3>
+          </div>
+
+          <div id="informacion_card">
             <div id="container_graduation_style_beerCard">
               <p id="beer_graduation">{beer?.graduation}</p>
               <p id="beer_style">{beer?.style}</p>
@@ -147,9 +195,9 @@ function BeerCard() {
           </div>
         </div>
 
-        {beer?.comments ? (
+        {/* Comentamos comentarios jejeje */}
+        {/* {beer?.comments ? (
           <div id="commentas_card">
-            {/* Comentarios */}
             <div id="comments_beer_card">
               <h2 id="h2_notas">Notas</h2>
               <h2 id="comment">{beer?.comments}</h2>
@@ -157,7 +205,7 @@ function BeerCard() {
           </div>
         ) : (
           <></>
-        )}
+        )} */}
         <Link to={`/beer/${idInteger + 1}`}>
           {nextBeer !== undefined ? (
             <>

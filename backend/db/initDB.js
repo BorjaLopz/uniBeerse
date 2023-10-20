@@ -23,6 +23,7 @@ const filename = "Cervezas - Listado Cervezas.csv";
 
 const addData = process.argv[2] === "--data";
 
+
 async function main() {
   let connection;
   try {
@@ -100,6 +101,10 @@ async function main() {
           ]
         );
       }
+    }
+
+    if(createJSON) {
+      console.log("VAMOS A CREAR UN JSON")
     }
 
     console.log(chalk.green("Tables created"));
