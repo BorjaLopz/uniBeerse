@@ -17,6 +17,7 @@ import {
   getBeerByStyleController,
   getBeerByGraduationController,
   addNewBeerController,
+  addNewBeerCommentController,
 } from "./controllers/beers.js";
 
 //dotEnv config
@@ -58,6 +59,9 @@ app.get("/beer/graduation/:graduation", getBeerByGraduationController);
 
 /* Añadir nueva cerveza */
 app.post("/beer/add", addNewBeerController);
+
+/* Añadir nueva cerveza */
+app.post("/beer/comment", addNewBeerCommentController);
 
 /* HANDLE ERRORS*/
 

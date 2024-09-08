@@ -1,0 +1,22 @@
+{
+  "comments": [
+    {
+      "id": "1",
+      "comment": "hola, otra prueba",
+      "rating": 3,
+      "timestamp": { "date": "7/11/2023", "time": "12:34:21" }
+    },
+    {
+      "id": "249",
+      "comment": "De la ultima birruca",
+      "rating": 5,
+      "timestamp": { "date": "7/11/2023", "time": "12:34:45" }
+    },
+    {
+      "id": "247",
+      "comment": "asdsaaasdasdasdassdasda",
+      "rating": 3,
+      "timestamp": { "date": "7/11/2023", "time": "12:50" }
+    }
+  ]
+}

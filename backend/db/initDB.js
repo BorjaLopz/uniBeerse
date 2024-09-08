@@ -103,9 +103,9 @@ async function main() {
       }
     }
 
-    if(createJSON) {
-      console.log("VAMOS A CREAR UN JSON")
-    }
+    // if(createJSON) {
+    //   console.log("VAMOS A CREAR UN JSON")
+    // }
 
     console.log(chalk.green("Tables created"));
   } catch (error) {

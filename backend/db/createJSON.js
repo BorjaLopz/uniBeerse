@@ -1,85 +1,59 @@
-"use strict";
+// Para generar un fichero nuevo nos colocamos en este directorio y tenemos que hacer el comando "node createJSON.js" de esta manera se nos generará un fichero JSON en la carpeta que tengamos puesta en "jsonFilePath" (frontend en este caso)
 
-import dotenv from "dotenv";
-dotenv.config();
-import chalk from "chalk";
-
-/* Leer el fichero */
 import fs from "fs";
-import { StringDecoder } from "string_decoder";
-StringDecoder.StringDecoder;
-const decoder = new StringDecoder("utf-8");
+import path from "path";
+import csvParser from "csv-parser";
 
-const filename = "Cervezas - Listado Cervezas.csv";
+// Rutas de los archivos de entrada y salida
 
-const filePath = "../frontend/public/beer-data.json";
+import { fileURLToPath } from "url";
+
+// Obtener la ruta del archivo actual y el directorio
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
+
+const csvFilePath = path.join(__dirname, "../Cervezas - Listado Cervezas.csv");
+const jsonFilePath = path.join(__dirname, "../beer-data.json");
 
 async function createJSONFunction() {
-  console.log(chalk.blue(filename));
-
-  const data = fs.readFileSync(filename);
-  const decodeText = decoder.write(data);
-  const lines = decodeText.split("\n");
-
-  //Comprobamos que el fichero exista antes de borrar
   try {
-    if (fs.existsSync(filePath)) {
-      //Si existe borramos el fichero
-      fs.unlinkSync(filePath);
-      console.log(chalk.green("Archivo borrado con exito"));
-    }
-  } catch (e) {
-    console.log(chalk.red(`El fichero no existe`));
+    // Leer el archivo CSV utilizando csv-parser
+    const beerData = [];
+    fs.createReadStream(csvFilePath)
+      .pipe(csvParser())
+      .on("data", (row) => {
+        // Procesar cada fila del CSV y ajustar los campos según sea necesario
+        const beer = {
+          ID: row.ID,
+          MARCA: row.MARCA,
+          NOMBRE: row.NOMBRE,
+          ESTILO: row.ESTILO,
+          GRADUACION: row.GRADUACIÓN,
+          NACIONALIDAD: row.NACIONALIDAD,
+          NOTA: row.NOTA,
+          COMENTARIOS: row.COMENTARIOS,
+          IMAGEN: row.IMAGEN_LOCAL || "", // Asegúrate de manejar campos vacíos
+        };
+        beerData.push(beer);
+      })
+      .on("end", () => {
+        // Escribir el archivo JSON una vez se ha terminado de procesar el CSV
+        fs.promises
+          .writeFile(
+            jsonFilePath,
+            JSON.stringify({ data: beerData }, null, 2),
+            "utf8"
+          )
+          .then(() => {
+            console.log(`Archivo JSON generado con éxito en: ${jsonFilePath}`);
+          })
+          .catch((err) => {
+            console.error("Error al escribir el archivo JSON:", err);
+          });
+      });
+  } catch (err) {
+    console.error("Error al leer el archivo CSV:", err);
   }
-
-  // for (let i = 1; i < lines.length; i++) {
-  for (let i = 1; i < lines.length; i++) {
-    const [
-      marca,
-      nombre,
-      estilo,
-      graduacion,
-      nacionalidad,
-      nota,
-      comentarios,
-      imagen,
-    ] = lines[i].split(",");
-
-    //Escribimos el fichero
-    fs.writeFile(filePath, '{\n\t"data:": [', (e) => {
-      if (e) {
-        console.log(chalk.red(e));
-      }
-    });
-
-    const beerData = `{
-      \"id\":\"${i}\",
-      \"brand\":\"${marca}\", 
-      \"name\":\"${nombre}\", 
-      \"style\":\"${estilo}\", 
-      \"graduation\":\"${graduacion}\", 
-      \"country\":\"${nacionalidad}\", 
-      \"score\":\"${nota}\", 
-      \"comments\":\"${comentarios}\", 
-      \"img_file\":\"${imagen}\"
-    } ${i < lines.length ? "," : ""}`;
-
-    // console.log(beerData);
-
-    //Escribimos el fichero
-    fs.appendFile(filePath, beerData, (e) => {
-      if (e) {
-        console.log(chalk.red(e));
-      }
-    });
-  }
-
-  //Escribimos el fichero
-  fs.appendFile(filePath, "\n\t]\n}", (e) => {
-    if (e) {
-      console.log(chalk.red(e));
-    }
-  });
 }
 
 createJSONFunction();

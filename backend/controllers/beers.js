@@ -6,6 +6,7 @@ import {
   getBeerByStyle,
   getBeerByGraduation,
   addNewBeer,
+  addNewBeerComment,
 } from "../db/beers.js";
 import {
   generateError,
@@ -198,6 +199,67 @@ const addNewBeerController = async (req, res, next) => {
   }
 };
 
+const addNewBeerCommentController = async (req, res, next) => {
+  try {
+    const { id, comment, rating } = req.body;
+
+    let obj = {}; //Objeto vacio para luego iterar
+    obj.id = id;
+    obj.comment = comment;
+    obj.rating = rating;
+
+    //Mostramos cual es el dato que falta
+    for (const it in obj) {
+      if (!obj[it]) {
+        throw generateError(`Tienes que introducir el ${it}`, 400);
+      }
+    }
+
+    // //FICHERO
+    // let filename;
+    // let uploadPath;
+
+    // if (req.files && req.files.file) {
+    //   let sampleFile = req.files.file;
+
+    //   //Creamos el path
+    //   const uploadDir = path.join(__dirname, "../uploads");
+
+    //   //Creamos directorio si no existe
+    //   await createPathIfNotExists(uploadDir);
+
+    //   //Comprobamos si el fichero es valido
+    //   if (!checkIfExtensionIsAllowed(getExtensionFile(sampleFile.name))) {
+    //     throw generateError(
+    //       `Fichero no valido. Tipos de formato permitidos ${ALLOWED_EXTENSIONS}`,
+    //       415
+    //     );
+    //   }
+
+    //   //Generamos un nombre aleatorio
+    //   filename = `${nanoid(24)}.${getExtensionFile(sampleFile.name)}`;
+
+    //   uploadPath = uploadDir + "\\" + filename;
+
+    //   //Subimos el fichero
+    //   sampleFile.mv(uploadPath, function (e) {
+    //     if (e) {
+    //       throw generateError("No se pudo enviar el archivo.", 400);
+    //     }
+    //   });
+    // }
+
+    await addNewBeerComment(id, comment, rating);
+
+    res.send({
+      status: "ok",
+      data: `Comentario añadido con exito`,
+    });
+  } catch (e) {
+    next(e);
+  }
+};
+
 export {
   getAllBeersController,
   getBeerByIDController,
@@ -206,4 +268,5 @@ export {
   getBeerByStyleController,
   getBeerByGraduationController,
   addNewBeerController,
+  addNewBeerCommentController,
 };
